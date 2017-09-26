@@ -1,13 +1,14 @@
-package com.vitkulov.console_war.human;
+package com.vitkulov.console_war.model.human;
 
 import com.vitkulov.console_war.Game;
-import com.vitkulov.console_war.Mage;
-import com.vitkulov.console_war.Squad;
+import com.vitkulov.console_war.model.Mage;
+import com.vitkulov.console_war.model.Squad;
+import com.vitkulov.console_war.service.GameService;
 
 public class HumanMage extends Mage {
 
-    public HumanMage(Game game, Squad squad) {
-        super(game, squad);
+    public HumanMage(GameService service, Squad squad) {
+        super(service, squad);
     }
 
     @Override

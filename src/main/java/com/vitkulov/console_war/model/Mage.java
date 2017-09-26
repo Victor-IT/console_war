@@ -1,11 +1,13 @@
-package com.vitkulov.console_war;
+package com.vitkulov.console_war.model;
+
+import com.vitkulov.console_war.service.GameService;
 
 /**
  * Клас юнита - маг
  */
 public class Mage extends Unit {
 
-    public Mage(Game game, Squad squad) {
+    public Mage(GameService game, Squad squad) {
         super(game, squad);
     }
 

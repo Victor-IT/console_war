@@ -70,7 +70,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.vitkulov.console_war.main.GameRunner</mainClass>
+                            <mainClass>com.vitkulov.console_war.GameRunner</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

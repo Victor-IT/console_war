@@ -1,8 +1,8 @@
-package com.vitkulov.console_war;
+package com.vitkulov.console_war.model;
 
 public interface Action {
 
-    public void doActions();
+    void doActions();
 
     void doAction1();
 

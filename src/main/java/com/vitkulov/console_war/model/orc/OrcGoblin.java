@@ -1,13 +1,14 @@
-package com.vitkulov.console_war.orc;
+package com.vitkulov.console_war.model.orc;
 
 import com.vitkulov.console_war.Game;
-import com.vitkulov.console_war.Squad;
-import com.vitkulov.console_war.Warrior;
+import com.vitkulov.console_war.model.Squad;
+import com.vitkulov.console_war.model.Warrior;
+import com.vitkulov.console_war.service.GameService;
 
 public class OrcGoblin extends Warrior {
 
-    public OrcGoblin(Game game, Squad squad) {
-        super(game, squad);
+    public OrcGoblin(GameService service, Squad squad) {
+        super(service, squad);
     }
 
     @Override

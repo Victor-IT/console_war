@@ -1,23 +1,32 @@
-package com.vitkulov.console_war;
+package com.vitkulov.console_war.model;
+
+import com.vitkulov.console_war.model.weapon.Fist;
+import com.vitkulov.console_war.service.GameService;
 
 /**
  * Абстрактный класс юнит - каркас для будущих модификаций юнитов.
  */
 public abstract class Unit implements Action {
-    private int id;
-    private String name;
-    protected final Game game;
+    protected final GameService service;
     private final Squad squad;
 
-    private final Double BASE_DAMAGE = 0.0;
-
+    private int id;
+    private String name;
+    private Weapon primaryWep;
+    private Weapon secondaryWep;
     private Double health = 100.0;
     private Double buffMod = 1.0;
-    private Double weaponMod = 1.0;
     private boolean buffed;
-    public Unit(Game game, Squad squad) {
-        this.game = game;
+
+    public Unit(GameService service, Squad squad) {
+        this.service = service;
         this.squad = squad;
+        this.primaryWep = new Fist(1);
+        this.secondaryWep = new Fist(1);
+    }
+
+    public Squad getSquad() {
+        return squad;
     }
 
     public int getId() {
@@ -36,8 +45,20 @@ public abstract class Unit implements Action {
         this.name = name;
     }
 
-    public Squad getSquad() {
-        return squad;
+    public Weapon getPrimaryWep() {
+        return primaryWep;
+    }
+
+    public void setPrimaryWep(Weapon weapon) {
+        this.primaryWep = weapon;
+    }
+
+    public Weapon getSecondaryWep() {
+        return secondaryWep;
+    }
+
+    public void setSecondaryWep(Weapon secondaryWep) {
+        this.secondaryWep = secondaryWep;
     }
 
     public Double getHealth() {
@@ -56,17 +77,12 @@ public abstract class Unit implements Action {
         this.buffMod = buffMod;
     }
 
-    public Double getWeaponMod() {
-        return weaponMod;
+    public Double getPrimaryDamage() {
+        return primaryWep.getDamage() * getBuffMod();
     }
 
-    public void setWeaponMod(Double weaponMod) {
-        this.weaponMod = weaponMod;
-    }
-
-    public Double getDamage() {
-        Double damage;
-        return damage = (this.BASE_DAMAGE + weaponMod) * buffMod;
+    public Double getSecondaryDamage() {
+        return secondaryWep.getDamage() * getBuffMod();
     }
 
     public boolean isBuffed() {
@@ -79,16 +95,17 @@ public abstract class Unit implements Action {
 
     /**
      * Фиксация урона юниту
-     * @param damage сила удара
+     *
+     * @param damage количество урона
      * @return 0 если юнит ещё жив или 1 если юнит мёртв
      */
     public int hit(double damage) {
         this.health -= damage;
-        System.out.println(this.getClass().getSimpleName() + " получил урон: -" + damage + " HP");
+        System.out.printf("%s получил урон: -%s HP\t", this.getClass().getSimpleName(), damage);
         if (health > 0) {
-            System.out.println("Осталось: " + health + " HP");
+            System.out.println("Осталось: " + health + " HP\n");
         } else {
-            System.out.println("Убит");
+            System.out.println("Убит\n");
             return 0;
         }
         return 1;
@@ -99,7 +116,8 @@ public abstract class Unit implements Action {
         return this.getClass().getSimpleName() + " {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", damage=" + getDamage() +
+                ", pWeapon =" + getPrimaryWep() +
+                ", sWeapon =" + getSecondaryWep() +
                 ", health=" + health +
                 ", buffed=" + buffed +
                 '}';

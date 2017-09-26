@@ -1,4 +1,4 @@
-package com.vitkulov.console_war;
+package com.vitkulov.console_war.model;
 
 import java.util.ArrayList;
 
@@ -6,9 +6,18 @@ import java.util.ArrayList;
  * Класс описывающий структуру отряда как боевой единицы.
  */
 public class Squad {
+    private String squadName;
     private ArrayList<Unit> buffedSquad = new ArrayList<>();
     private ArrayList<Unit> normalSquad = new ArrayList<>();
     private ArrayList<Unit> deadList = new ArrayList<>();
+
+    public String getSquadName() {
+        return squadName;
+    }
+
+    public void setSquadName(String squadName) {
+        this.squadName = squadName;
+    }
 
     public void adToBuffed(Unit unit) {
         unit.setBuffed(true);
@@ -35,7 +44,7 @@ public class Squad {
         } else if (normalSquad.size() > 0) {
             normalSquad.get((int) (Math.random() * normalSquad.size())).doActions();
         } else {
-            System.out.println("Весь отряд повержен!");
+            System.out.println("Отряд " + squadName + " повержен!");
         }
     }
 
