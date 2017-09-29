@@ -1,4 +1,4 @@
-package com.vitkulov.console_war.view;
+package com.vitkulov.console_war.view.controller;
 
 public interface ViewController {
 

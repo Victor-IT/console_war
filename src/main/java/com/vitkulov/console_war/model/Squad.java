@@ -1,15 +1,23 @@
 package com.vitkulov.console_war.model;
 
+import com.vitkulov.console_war.Game;
+
 import java.util.ArrayList;
 
 /**
  * Класс описывающий структуру отряда как боевой единицы.
  */
 public class Squad {
+    private Game game;
     private String squadName;
+
     private ArrayList<Unit> buffedSquad = new ArrayList<>();
     private ArrayList<Unit> normalSquad = new ArrayList<>();
     private ArrayList<Unit> deadList = new ArrayList<>();
+
+    public Squad(Game game) {
+        this.game = game;
+    }
 
     public String getSquadName() {
         return squadName;
@@ -20,18 +28,24 @@ public class Squad {
     }
 
     public void adToBuffed(Unit unit) {
+        unit.setGame(game);
+        unit.setSquad(this);
         unit.setBuffed(true);
         normalSquad.remove(unit);
         buffedSquad.add(unit);
     }
 
     public void adToNormal(Unit unit) {
+        unit.setGame(game);
+        unit.setSquad(this);
         unit.setBuffed(false);
         buffedSquad.remove(unit);
         normalSquad.add(unit);
     }
 
     public void adToDeadList(Unit unit) {
+        unit.setGame(game);
+        unit.setSquad(this);
         unit.setBuffed(false);
         buffedSquad.remove(unit);
         normalSquad.remove(unit);
@@ -67,5 +81,10 @@ public class Squad {
      */
     public boolean check() {
         return (buffedSquad.size() == 0 && normalSquad.size() == 0);
+    }
+
+    @Override
+    public String toString() {
+        return "" + normalSquad + "\n";
     }
 }

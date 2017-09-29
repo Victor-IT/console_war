@@ -1,15 +1,8 @@
 package com.vitkulov.console_war;
 
-import com.vitkulov.console_war.model.Archer;
 import com.vitkulov.console_war.model.Squad;
 import com.vitkulov.console_war.model.Unit;
-import com.vitkulov.console_war.model.human.HumanCrossbowman;
-import com.vitkulov.console_war.model.orc.OrcArcher;
-import com.vitkulov.console_war.model.weapon.Bow;
-import com.vitkulov.console_war.model.weapon.Crossbow;
-import com.vitkulov.console_war.model.weapon.Dagger;
-import com.vitkulov.console_war.model.weapon.Fist;
-import com.vitkulov.console_war.service.GameServiceImpl;
+import com.vitkulov.console_war.model.squad_factory.SquadFactory;
 
 /**
  * Основной класс-сервер, где происходит ход игры и взаимодействие между объектами.
@@ -17,37 +10,26 @@ import com.vitkulov.console_war.service.GameServiceImpl;
 public class Game {
     private Squad lightSquad;
     private Squad darkSquad;
-    private GameServiceImpl service;
-
+    private SquadFactory squadFactory = new SquadFactory();
     private int turns;
 //    private final Validator validator = new Validator(new ConsoleIO(new Scanner(System.in), System.out));
 
-
-    public void setService(GameServiceImpl service) {
-        this.service = service;
-    }
-
     public Squad createLightSquad() {
-        this.lightSquad = new Squad(); //todo: создать фабрику сквадов
-        lightSquad.setSquadName("Light");
-        Unit humanCrossbowman = new HumanCrossbowman(service, lightSquad);
-        humanCrossbowman.setPrimaryWep(new Crossbow(5));
-        humanCrossbowman.setSecondaryWep(new Fist(3));
-        lightSquad.adToNormal(humanCrossbowman);
+        this.lightSquad = squadFactory.createLightSquad(this, 0, 3, 0); // todo: поправить фабрику с учётом рандома рас
         return lightSquad;
     }
 
     public Squad createDarkSquad() {
-        this.darkSquad = new Squad();
-        darkSquad.setSquadName("Dark");
-        Unit orcArcher = new OrcArcher(service, darkSquad);
-        orcArcher.setPrimaryWep(new Bow(3));
-        orcArcher.setSecondaryWep(new Dagger(2));
-
-        darkSquad.adToNormal(orcArcher);
+        this.darkSquad = squadFactory.createDarkSquad(this, 0, 3, 0);
         return darkSquad;
     }
 
+    /**
+     * Получить противника из вражеского отряда
+     *
+     * @param unit - текущий юнит
+     * @return enemy unit - противник из вражеского отряда
+     */
     public Unit getEnemy(Unit unit) {
         Squad enemySquad;
         if (unit.getSquad() == lightSquad) {
@@ -58,6 +40,12 @@ public class Game {
         return enemySquad.getRandomUnit();
     }
 
+    /**
+     * Нанести урон противнику
+     *
+     * @param enemy  - выбранный противник
+     * @param damage - наносимый урон
+     */
     public void hit(Unit enemy, double damage) {
         if (enemy.hit(damage) <= 0) {
             Squad squad = enemy.getSquad();
@@ -80,14 +68,14 @@ public class Game {
     public void runGame() {
 
         // выбрать очередность хода для стороны
-
+        // todo: создать жребий очередности хода
         // создаём цикл очередности ходов
         do {
             // ход светлой стороны
-            System.out.println(++turns);
+            System.out.println("Ход: " + ++turns);
             lightSquad.makeTurn();
             // ход тёмной стороны
-            System.out.println(++turns);
+            System.out.println("Ход: " + ++turns);
             darkSquad.makeTurn();
             // проверить на выигрыш
         } while (!checkWin()); //validator.compare("Do you want to continue?", "y"))

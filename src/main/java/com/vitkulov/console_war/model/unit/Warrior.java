@@ -1,15 +1,11 @@
-package com.vitkulov.console_war.model;
+package com.vitkulov.console_war.model.unit;
 
-import com.vitkulov.console_war.service.GameService;
+import com.vitkulov.console_war.model.Unit;
 
 /**
  * Класс юнита - воин
  */
 public class Warrior extends Unit {
-
-    public Warrior(GameService game, Squad squad) {
-        super(game, squad);
-    }
 
     @Override
     public void doActions() {

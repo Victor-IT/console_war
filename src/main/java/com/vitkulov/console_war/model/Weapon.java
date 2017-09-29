@@ -1,8 +1,6 @@
 package com.vitkulov.console_war.model;
 
-import com.vitkulov.console_war.model.weapon.WepAction;
-
-public abstract class Weapon implements WepAction{
+public abstract class Weapon implements WeaponAction {
     private String name;
     private double damage;
 

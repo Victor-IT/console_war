@@ -1,7 +1,6 @@
 package com.vitkulov.console_war.service;
 
 import com.vitkulov.console_war.model.Squad;
-import com.vitkulov.console_war.model.Unit;
 
 public interface GameService {
     /**
@@ -15,20 +14,6 @@ public interface GameService {
      * @return squad
      */
     Squad createDarkSquad();
-
-    /**
-     * Получить противника из вражеского отряда
-     * @param unit - текущий юнит
-     * @return enemy unit - противник из вражеского отряда
-     */
-    Unit chooseEnemy(Unit unit);
-
-    /**
-     * Нанести урон противнику
-     * @param enemy - выбранный противник
-     * @param damage - наносимый урон
-     */
-    void hit(Unit enemy, double damage);
 
     /**
      * Проверить выживших

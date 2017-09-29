@@ -1,4 +1,4 @@
-package com.vitkulov.console_war.view;
+package com.vitkulov.console_war.view.controller;
 
 import com.vitkulov.console_war.service.GameService;
 

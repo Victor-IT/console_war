@@ -2,7 +2,6 @@ package com.vitkulov.console_war.service;
 
 import com.vitkulov.console_war.Game;
 import com.vitkulov.console_war.model.Squad;
-import com.vitkulov.console_war.model.Unit;
 
 public class GameServiceImpl implements GameService {
     private Game game;
@@ -14,7 +13,6 @@ public class GameServiceImpl implements GameService {
     public GameServiceImpl(Game game) {
         this();
         setGame(game);
-        game.setService(this);
     }
 
     public void setGame(Game game) {
@@ -29,16 +27,6 @@ public class GameServiceImpl implements GameService {
     @Override
     public Squad createDarkSquad() {
         return game.createDarkSquad();
-    }
-
-    @Override
-    public Unit chooseEnemy(Unit unit) {
-        return game.getEnemy(unit);
-    }
-
-    @Override
-    public void hit(Unit enemy, double damage) {
-        game.hit(enemy, damage);
     }
 
     @Override

@@ -1,15 +1,8 @@
-package com.vitkulov.console_war.model.orc;
+package com.vitkulov.console_war.model.unit.orc;
 
-import com.vitkulov.console_war.Game;
-import com.vitkulov.console_war.model.Mage;
-import com.vitkulov.console_war.model.Squad;
-import com.vitkulov.console_war.service.GameService;
+import com.vitkulov.console_war.model.unit.Mage;
 
 public class OrcShaman extends Mage {
-
-    public OrcShaman(GameService service, Squad squad) {
-        super(service, squad);
-    }
 
     @Override
     public void doAction1() {

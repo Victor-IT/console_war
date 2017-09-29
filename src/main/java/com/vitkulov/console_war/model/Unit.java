@@ -1,16 +1,15 @@
 package com.vitkulov.console_war.model;
 
+import com.vitkulov.console_war.Game;
 import com.vitkulov.console_war.model.weapon.Fist;
-import com.vitkulov.console_war.service.GameService;
 
 /**
  * Абстрактный класс юнит - каркас для будущих модификаций юнитов.
  */
 public abstract class Unit implements Action {
-    protected final GameService service;
-    private final Squad squad;
+    protected Game game;
+    private Squad squad;
 
-    private int id;
     private String name;
     private Weapon primaryWep;
     private Weapon secondaryWep;
@@ -18,23 +17,21 @@ public abstract class Unit implements Action {
     private Double buffMod = 1.0;
     private boolean buffed;
 
-    public Unit(GameService service, Squad squad) {
-        this.service = service;
-        this.squad = squad;
+    public Unit() {
         this.primaryWep = new Fist(1);
         this.secondaryWep = new Fist(1);
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public Squad getSquad() {
         return squad;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setSquad(Squad squad) {
+        this.squad = squad;
     }
 
     public String getName() {
@@ -49,7 +46,7 @@ public abstract class Unit implements Action {
         return primaryWep;
     }
 
-    public void setPrimaryWep(Weapon weapon) {
+    public void setPrimaryWeapon(Weapon weapon) {
         this.primaryWep = weapon;
     }
 
@@ -57,7 +54,7 @@ public abstract class Unit implements Action {
         return secondaryWep;
     }
 
-    public void setSecondaryWep(Weapon secondaryWep) {
+    public void setSecondaryWeapon(Weapon secondaryWep) {
         this.secondaryWep = secondaryWep;
     }
 
@@ -101,7 +98,7 @@ public abstract class Unit implements Action {
      */
     public int hit(double damage) {
         this.health -= damage;
-        System.out.printf("%s получил урон: -%s HP\t", this.getClass().getSimpleName(), damage);
+        System.out.printf("%s получил урон: -%s HP\t", this.getName(), damage);
         if (health > 0) {
             System.out.println("Осталось: " + health + " HP\n");
         } else {
@@ -113,13 +110,6 @@ public abstract class Unit implements Action {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + " {" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", pWeapon =" + getPrimaryWep() +
-                ", sWeapon =" + getSecondaryWep() +
-                ", health=" + health +
-                ", buffed=" + buffed +
-                '}';
+        return " " + name + ", health=" + health + "\n";
     }
 }

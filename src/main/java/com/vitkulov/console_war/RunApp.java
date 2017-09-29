@@ -3,17 +3,16 @@ package com.vitkulov.console_war;
 import com.vitkulov.console_war.service.GameService;
 import com.vitkulov.console_war.service.GameServiceImpl;
 import com.vitkulov.console_war.view.GameUI;
-import com.vitkulov.console_war.view.ViewController;
-import com.vitkulov.console_war.view.ViewControllerImpl;
+import com.vitkulov.console_war.view.controller.ViewController;
+import com.vitkulov.console_war.view.controller.ViewControllerImpl;
 
 /**
  * Класс стартующий приложение
  */
-public class GameRunner {
+public class RunApp {
     private GameUI ui;
 
-
-    private GameRunner(final GameUI ui) {
+    private RunApp(final GameUI ui) {
         this.ui = ui;
     }
 
@@ -29,6 +28,6 @@ public class GameRunner {
         ViewController controller = new ViewControllerImpl(service);
         GameUI ui = new GameUI(controller);
 
-        new GameRunner(ui).start();
+        new RunApp(ui).start();
     }
 }
