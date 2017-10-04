@@ -1,12 +1,12 @@
 package com.vitkulov.console_war.model.unit.orc;
 
 import com.vitkulov.console_war.model.unit.Warrior;
+import com.vitkulov.console_war.model.weapon.Club;
 
 public class OrcGoblin extends Warrior {
 
-    @Override
-    public void doAction1() {
-        // атака дубиной : урон 20 ед.
-        System.out.println(this.getClass().getSimpleName() + "Действие 1");
+    public OrcGoblin() {
+        // Установим начальное оружие и силу урона
+        setPrimaryWeapon(new Club(20)); // атаковать дубиной : урон 20 ед.
     }
 }

@@ -4,18 +4,17 @@ import com.vitkulov.console_war.Game;
 import com.vitkulov.console_war.model.weapon.Fist;
 
 /**
- * Абстрактный класс юнит - каркас для будущих модификаций юнитов.
+ * Класс описывающий юнита - общий скелет для всех юнитов.
  */
-public abstract class Unit implements Action {
+public abstract class Unit implements UnitAction {
     protected Game game;
-    private Squad squad;
+    protected Squad squad;
 
-    private String name;
-    private Weapon primaryWep;
-    private Weapon secondaryWep;
-    private Double health = 100.0;
-    private Double buffMod = 1.0;
-    private boolean buffed;
+    protected String name;
+    protected Weapon primaryWep;
+    protected Weapon secondaryWep;
+    protected double health = 100.0;
+    protected double damageMod = 1.0;
 
     public Unit() {
         this.primaryWep = new Fist(1);
@@ -62,32 +61,24 @@ public abstract class Unit implements Action {
         return health;
     }
 
-    public void setHealth(Double health) {
+    public void setHealth(double health) {
         this.health = health;
     }
 
-    public Double getBuffMod() {
-        return buffMod;
+    public double getDamageMod() {
+        return damageMod;
     }
 
-    public void setBuffMod(Double buffMod) {
-        this.buffMod = buffMod;
+    public void setDamageMod(double damageMod) {
+        this.damageMod = damageMod;
     }
 
     public Double getPrimaryDamage() {
-        return primaryWep.getDamage() * getBuffMod();
+        return primaryWep.getDamage() * getDamageMod();
     }
 
     public Double getSecondaryDamage() {
-        return secondaryWep.getDamage() * getBuffMod();
-    }
-
-    public boolean isBuffed() {
-        return buffed;
-    }
-
-    public void setBuffed(boolean buffed) {
-        this.buffed = buffed;
+        return secondaryWep.getDamage() * getDamageMod();
     }
 
     /**
@@ -102,7 +93,7 @@ public abstract class Unit implements Action {
         if (health > 0) {
             System.out.println("Осталось: " + health + " HP\n");
         } else {
-            System.out.println("Убит\n");
+            System.err.println("Убит\n");
             return 0;
         }
         return 1;
@@ -110,6 +101,6 @@ public abstract class Unit implements Action {
 
     @Override
     public String toString() {
-        return " " + name + ", health=" + health + "\n";
+        return " " + name + ", health=" + health + ", damageMod=" + damageMod + "\n";
     }
 }

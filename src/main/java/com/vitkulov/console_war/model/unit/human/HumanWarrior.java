@@ -1,12 +1,12 @@
 package com.vitkulov.console_war.model.unit.human;
 
 import com.vitkulov.console_war.model.unit.Warrior;
+import com.vitkulov.console_war.model.weapon.Sword;
 
 public class HumanWarrior extends Warrior {
 
-    @Override
-    public void doAction1() {
-        // атака мечом : урон 18 ед.
-        System.out.println(this.getClass().getSimpleName() + "Действие 1");
+    public HumanWarrior() {
+        // Установим начальное оружие и силу урона
+        setPrimaryWeapon(new Sword(18)); // атаковать мечом : урон 18 ед.
     }
 }

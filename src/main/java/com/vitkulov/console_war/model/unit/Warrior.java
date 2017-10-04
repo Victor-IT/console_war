@@ -26,7 +26,10 @@ public class Warrior extends Unit {
 
     @Override
     public void doAction1() {
-
+        Unit enemy = game.getEnemy(this);
+        System.out.printf("%s %s %s ед.\n", this.getName(), getPrimaryWep().doAction(), getPrimaryDamage());
+        game.hit(enemy, getPrimaryDamage());
+        this.getSquad().adToNormal(this);
     }
 
     @Override

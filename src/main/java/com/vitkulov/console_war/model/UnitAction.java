@@ -1,6 +1,6 @@
 package com.vitkulov.console_war.model;
 
-public interface Action {
+public interface UnitAction {
 
     void doActions();
 

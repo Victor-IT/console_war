@@ -1,12 +1,12 @@
 package com.vitkulov.console_war.model.unit.undead;
 
 import com.vitkulov.console_war.model.unit.Warrior;
+import com.vitkulov.console_war.model.weapon.Spear;
 
 public class UndeadZombie extends Warrior {
 
-    @Override
-    public void doAction1() {
-        // удар копьем : урон 18 ед.
-        System.out.println(this.getClass().getSimpleName() + "Действие 1");
+    public UndeadZombie() {
+        // Установим начальное оружие и силу урона
+        setPrimaryWeapon(new Spear(18)); // атаковать копьём : урон 18 ед.
     }
 }

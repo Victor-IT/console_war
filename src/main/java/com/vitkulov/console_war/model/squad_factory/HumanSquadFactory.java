@@ -10,6 +10,7 @@ public class HumanSquadFactory {
 
     public Squad createSquad(Game game, int mageCount, int archerCount, int warriorCount) {
         Squad squad = new Squad(game);
+        squad.setSquadName("HumanSquad");
 
         for (int i = 1; i < mageCount + 1; i++) {
             HumanMage humanMage = new HumanMage();

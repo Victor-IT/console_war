@@ -29,6 +29,7 @@ public class Archer extends Unit {
         Unit enemy = game.getEnemy(this);
         System.out.printf("%s %s %s ед.\n", this.getName(), getPrimaryWep().doAction(), getPrimaryDamage());
         game.hit(enemy, getPrimaryDamage());
+        this.getSquad().adToNormal(this);
     }
 
     @Override
@@ -36,5 +37,6 @@ public class Archer extends Unit {
         Unit enemy = game.getEnemy(this);
         System.out.printf("%s %s %s ед.\n", this.getName(), getSecondaryWep().doAction(), getSecondaryDamage());
         game.hit(enemy, getSecondaryDamage());
+        this.getSquad().adToNormal(this);
     }
 }

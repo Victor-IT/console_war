@@ -2,6 +2,7 @@ package com.vitkulov.console_war.model.squad_factory;
 
 import com.vitkulov.console_war.Game;
 import com.vitkulov.console_war.model.Squad;
+import com.vitkulov.console_war.model.Unit;
 
 public class SquadFactory {
 
@@ -9,13 +10,13 @@ public class SquadFactory {
         Squad squad;
         if (((int) (Math.random() * 2) + 1) == 1) {
             squad = new HumanSquadFactory().createSquad(game, mageCount, archerCount, warriorCount);
-            squad.setSquadName("HumanSquad");
         } else {
             squad = new ElfSquadFactory().createSquad(game, mageCount, archerCount, warriorCount);
-            squad.setSquadName("ElfSquad");
         }
         System.out.printf("Создан светлый отряд %s\n", squad.getSquadName());
-        System.out.println(squad);
+        for (Unit unit : squad.getNormalSquad()) {
+            System.out.print(unit);
+        }
         return squad;
     }
 
@@ -23,13 +24,13 @@ public class SquadFactory {
         Squad squad;
         if (((int) (Math.random() * 2) + 1) == 1) {
             squad = new OrcSquadFactory().createSquad(game, mageCount, archerCount, warriorCount);
-            squad.setSquadName("OrcSquad");
         } else {
             squad = new UndeadSquadFactory().createSquad(game, mageCount, archerCount, warriorCount);
-            squad.setSquadName("UndeadSquad");
         }
         System.out.printf("Создан тёмный отряд %s\n", squad.getSquadName());
-        System.out.println(squad);
+        for (Unit unit : squad.getNormalSquad()) {
+            System.out.print(unit);
+        }
         return squad;
     }
 }

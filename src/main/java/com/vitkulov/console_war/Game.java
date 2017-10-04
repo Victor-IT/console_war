@@ -11,16 +11,16 @@ public class Game {
     private Squad lightSquad;
     private Squad darkSquad;
     private SquadFactory squadFactory = new SquadFactory();
-    private int turns;
+    public static int turn = 1;
 //    private final Validator validator = new Validator(new ConsoleIO(new Scanner(System.in), System.out));
 
     public Squad createLightSquad() {
-        this.lightSquad = squadFactory.createLightSquad(this, 0, 3, 0); // todo: поправить фабрику с учётом рандома рас
+        this.lightSquad = squadFactory.createLightSquad(this, 1, 1, 1);
         return lightSquad;
     }
 
     public Squad createDarkSquad() {
-        this.darkSquad = squadFactory.createDarkSquad(this, 0, 3, 0);
+        this.darkSquad = squadFactory.createDarkSquad(this, 1, 1, 1);
         return darkSquad;
     }
 
@@ -38,6 +38,32 @@ public class Game {
             enemySquad = getLightSquad();
         }
         return enemySquad.getRandomUnit();
+    }
+
+    public Unit getPrivilegedEnemy(Unit unit) {
+        Squad enemySquad;
+        if (unit.getSquad() == lightSquad) {
+            enemySquad = getDarkSquad();
+        } else {
+            enemySquad = getLightSquad();
+        }
+        return enemySquad.getRandomPrivilegedUnit();
+    }
+
+    /**
+     * Получить союзника из своего отряда
+     *
+     * @param unit текущий юнит
+     * @return ally unit - союзник из текущего отряда
+     */
+    public Unit getAlly(Unit unit) {
+        Squad allySquad;
+        if (unit.getSquad() == lightSquad) {
+            allySquad = getLightSquad();
+        } else {
+            allySquad = getDarkSquad();
+        }
+        return allySquad.getRandomUnitExcept(unit);
     }
 
     /**
@@ -72,10 +98,8 @@ public class Game {
         // создаём цикл очередности ходов
         do {
             // ход светлой стороны
-            System.out.println("Ход: " + ++turns);
             lightSquad.makeTurn();
             // ход тёмной стороны
-            System.out.println("Ход: " + ++turns);
             darkSquad.makeTurn();
             // проверить на выигрыш
         } while (!checkWin()); //validator.compare("Do you want to continue?", "y"))

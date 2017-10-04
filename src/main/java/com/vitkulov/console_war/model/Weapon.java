@@ -1,8 +1,11 @@
 package com.vitkulov.console_war.model;
 
+/**
+ * Класс описывающий оружие в игре
+ */
 public abstract class Weapon implements WeaponAction {
-    private String name;
-    private double damage;
+    protected String name;
+    protected double damage;
 
     public Weapon(String name, double damage) {
         this.name = name;

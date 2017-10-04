@@ -10,6 +10,7 @@ public class OrcSquadFactory {
 
     public Squad createSquad(Game game, int mageCount, int archerCount, int warriorCount) {
         Squad squad = new Squad(game);
+        squad.setSquadName("OrcSquad");
 
         for (int i = 1; i < mageCount + 1; i++) {
             OrcShaman orcShaman = new OrcShaman();
@@ -24,7 +25,7 @@ public class OrcSquadFactory {
         for (int i = 1; i < warriorCount + 1; i++) {
             OrcGoblin orcGoblin = new OrcGoblin();
             orcGoblin.setName("OrcGoblin_" + i);
-            squad.adToNormal(new OrcGoblin());
+            squad.adToNormal(orcGoblin);
         }
 
         return squad;

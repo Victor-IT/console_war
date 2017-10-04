@@ -11,9 +11,4 @@ public class OrcArcher extends Archer {
         setPrimaryWeapon(new Bow(3)); // стрелять из лука : урон 3 ед.
         setSecondaryWeapon(new Dagger(2)); // ударить клинком : урон 2 ед.
     }
-
-    public OrcArcher(String name) {
-        this();
-        setName(name);
-    }
 }

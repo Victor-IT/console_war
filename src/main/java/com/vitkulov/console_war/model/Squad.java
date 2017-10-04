@@ -3,17 +3,19 @@ package com.vitkulov.console_war.model;
 import com.vitkulov.console_war.Game;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Класс описывающий структуру отряда как боевой единицы.
+ * хранит в себе разбиение на группы (привилегированная, обычная, мертвые)
  */
 public class Squad {
     private Game game;
     private String squadName;
 
-    private ArrayList<Unit> buffedSquad = new ArrayList<>();
-    private ArrayList<Unit> normalSquad = new ArrayList<>();
-    private ArrayList<Unit> deadList = new ArrayList<>();
+    private List<Unit> privilegedSquad = new ArrayList<>();
+    private List<Unit> normalSquad = new ArrayList<>();
+    private List<Unit> deadList = new ArrayList<>();
 
     public Squad(Game game) {
         this.game = game;
@@ -27,38 +29,76 @@ public class Squad {
         this.squadName = squadName;
     }
 
-    public void adToBuffed(Unit unit) {
-        unit.setGame(game);
-        unit.setSquad(this);
-        unit.setBuffed(true);
-        normalSquad.remove(unit);
-        buffedSquad.add(unit);
+    public List<Unit> getPrivilegedSquad() {
+        return privilegedSquad;
     }
 
+    public List<Unit> getNormalSquad() {
+        return normalSquad;
+    }
+
+    public List<Unit> getDeadList() {
+        return deadList;
+    }
+
+    /**
+     * Добавить/перенести юнита в привилегированную группу
+     *
+     * @param unit юнит
+     */
+    public void adToPrivileged(Unit unit) {
+        unit.setGame(game);
+        unit.setSquad(this);
+        normalSquad.remove(unit);
+        unit.setDamageMod(1.5);
+
+        if (!privilegedSquad.add(unit)) {
+            privilegedSquad.add(unit);
+        }
+    }
+
+    /**
+     * Добавить/перенести юнита в обычную группу
+     *
+     * @param unit юнит
+     */
     public void adToNormal(Unit unit) {
         unit.setGame(game);
         unit.setSquad(this);
-        unit.setBuffed(false);
-        buffedSquad.remove(unit);
-        normalSquad.add(unit);
+        privilegedSquad.remove(unit);
+        unit.setDamageMod(1.0);
+
+        if (!normalSquad.contains(unit)) {
+            normalSquad.add(unit);
+        }
     }
 
+    /**
+     * Перенести юнита в список мертвых
+     *
+     * @param unit юнит
+     */
     public void adToDeadList(Unit unit) {
         unit.setGame(game);
         unit.setSquad(this);
-        unit.setBuffed(false);
-        buffedSquad.remove(unit);
+        privilegedSquad.remove(unit);
         normalSquad.remove(unit);
+
         deadList.add(unit);
     }
 
+    /**
+     * Произвести очередной ход
+     */
     public void makeTurn() {
-        if (buffedSquad.size() > 0) {
-            buffedSquad.get((int) (Math.random() * buffedSquad.size())).doActions();
+        System.out.printf("Ход %s, очередь отряда %s\n", Game.turn++, squadName);
+        if (privilegedSquad.size() > 0) {
+            privilegedSquad.get((int) (Math.random() * privilegedSquad.size())).doActions();
         } else if (normalSquad.size() > 0) {
             normalSquad.get((int) (Math.random() * normalSquad.size())).doActions();
         } else {
             System.out.println("Отряд " + squadName + " повержен!");
+            Game.turn--;
         }
     }
 
@@ -69,22 +109,45 @@ public class Squad {
      */
     public Unit getRandomUnit() {
         ArrayList<Unit> units = new ArrayList<>();
-        units.addAll(buffedSquad);
+        units.addAll(privilegedSquad);
         units.addAll(normalSquad);
         return units.get((int) (Math.random() * units.size()));
     }
 
     /**
-     * Проверить наличие живых юнитов в отряде
+     * Получить рандомного юнита за исключением данного.
      *
-     * @return true if are alive in squad OR false if all dead
+     * @param unit юнит для исключения из выборки
+     * @return random unit from squad
      */
-    public boolean check() {
-        return (buffedSquad.size() == 0 && normalSquad.size() == 0);
+    public Unit getRandomUnitExcept(Unit unit) {
+        ArrayList<Unit> units = new ArrayList<>();
+        units.addAll(privilegedSquad);
+        units.addAll(normalSquad);
+        units.remove(unit);
+        return units.get((int) (Math.random() * units.size()));
     }
 
-    @Override
-    public String toString() {
-        return "" + normalSquad + "\n";
+    /**
+     * Получить рандомного юнита из привилегированного отряда.
+     * Если он пуст, получить обычного.
+     *
+     * @return random privileged unit from squad
+     */
+    public Unit getRandomPrivilegedUnit() {
+        Unit enemyUnit = getRandomUnit();
+        if (privilegedSquad.size() != 0) {
+            enemyUnit = privilegedSquad.get((int) (Math.random() * privilegedSquad.size()));
+        }
+        return enemyUnit;
+    }
+
+    /**
+     * Проверить наличие живых юнитов в отряде
+     *
+     * @return true if there are alive units in squad OR false if all dead
+     */
+    public boolean check() {
+        return (privilegedSquad.size() == 0 && normalSquad.size() == 0);
     }
 }
