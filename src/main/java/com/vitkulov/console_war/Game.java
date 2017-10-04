@@ -12,15 +12,14 @@ public class Game {
     private Squad darkSquad;
     private SquadFactory squadFactory = new SquadFactory();
     public static int turn = 1;
-//    private final Validator validator = new Validator(new ConsoleIO(new Scanner(System.in), System.out));
 
     public Squad createLightSquad() {
-        this.lightSquad = squadFactory.createLightSquad(this, 1, 1, 1);
+        this.lightSquad = squadFactory.createLightSquad(this, 1, 0, 1);
         return lightSquad;
     }
 
     public Squad createDarkSquad() {
-        this.darkSquad = squadFactory.createDarkSquad(this, 1, 1, 1);
+        this.darkSquad = squadFactory.createDarkSquad(this, 1, 0, 1);
         return darkSquad;
     }
 
@@ -79,10 +78,6 @@ public class Game {
         }
     }
 
-    public boolean checkWin() {
-        return lightSquad.check() || darkSquad.check();
-    }
-
     public Squad getDarkSquad() {
         return darkSquad;
     }
@@ -91,19 +86,42 @@ public class Game {
         return lightSquad;
     }
 
+    /**
+     * Вывести имя отряда победителя
+     * @return
+     */
+    public boolean checkWin() {
+        boolean gameOver = false;
+
+        if (gameOver = lightSquad.isDefeated()) {
+            System.out.printf("\nОтряд %s уничтожен.\nПобедил отряд %s", lightSquad.getSquadName(), darkSquad.getSquadName());
+        } else if (gameOver = darkSquad.isDefeated()) {
+            System.out.printf("\nОтряд %s уничтожен.\nПобедил отряд %s", darkSquad.getSquadName(), lightSquad.getSquadName());
+        }
+        System.out.println("\nКонец игры...");
+        return gameOver;
+    }
+
     public void runGame() {
+        boolean winner = false;
 
         // выбрать очередность хода для стороны
         // todo: создать жребий очередности хода
-        // создаём цикл очередности ходов
+
+        // создаём цикл ходов
         do {
             // ход светлой стороны
-            lightSquad.makeTurn();
+            if (!winner) {
+                lightSquad.makeTurn();
+                winner = darkSquad.isDefeated();
+            }
             // ход тёмной стороны
-            darkSquad.makeTurn();
-            // проверить на выигрыш
-        } while (!checkWin()); //validator.compare("Do you want to continue?", "y"))
+            if (!winner) {
+                darkSquad.makeTurn();
+                winner = lightSquad.isDefeated();
+            }
+        } while (!winner);
 
-        System.out.println("Конец игры");
+        checkWin();
     }
 }

@@ -89,11 +89,11 @@ public abstract class Unit implements UnitAction {
      */
     public int hit(double damage) {
         this.health -= damage;
-        System.out.printf("%s получил урон: -%s HP\t", this.getName(), damage);
+        System.out.printf("%s получил урон: -%s HP", this.getName(), damage);
         if (health > 0) {
-            System.out.println("Осталось: " + health + " HP\n");
+            System.out.println(" | Осталось: " + health + " HP");
         } else {
-            System.err.println("Убит\n");
+            System.out.println(" | Убит");
             return 0;
         }
         return 1;

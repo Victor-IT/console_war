@@ -52,7 +52,7 @@ public class Squad {
         normalSquad.remove(unit);
         unit.setDamageMod(1.5);
 
-        if (!privilegedSquad.add(unit)) {
+        if (!privilegedSquad.contains(unit)) {
             privilegedSquad.add(unit);
         }
     }
@@ -88,10 +88,12 @@ public class Squad {
     }
 
     /**
-     * Произвести очередной ход
+     * Произвести очередной ход.
+     * В случае поражения отряда вернуть "true"
      */
-    public void makeTurn() {
-        System.out.printf("Ход %s, очередь отряда %s\n", Game.turn++, squadName);
+    public boolean makeTurn() {
+        System.out.printf("\nХод %s, отряд %s\n", Game.turn++, squadName);
+
         if (privilegedSquad.size() > 0) {
             privilegedSquad.get((int) (Math.random() * privilegedSquad.size())).doActions();
         } else if (normalSquad.size() > 0) {
@@ -99,7 +101,9 @@ public class Squad {
         } else {
             System.out.println("Отряд " + squadName + " повержен!");
             Game.turn--;
+            return true;
         }
+        return false;
     }
 
     /**
@@ -115,7 +119,8 @@ public class Squad {
     }
 
     /**
-     * Получить рандомного юнита за исключением данного.
+     * Получить рандомного юнита за исключением текущего.
+     * Однако, если кроме текущего никого не осталось, вернёт себя же.
      *
      * @param unit юнит для исключения из выборки
      * @return random unit from squad
@@ -125,7 +130,10 @@ public class Squad {
         units.addAll(privilegedSquad);
         units.addAll(normalSquad);
         units.remove(unit);
-        return units.get((int) (Math.random() * units.size()));
+        if (units.size() > 0) {
+            return units.get((int) (Math.random() * units.size()));
+        }
+        return unit;
     }
 
     /**
@@ -145,9 +153,9 @@ public class Squad {
     /**
      * Проверить наличие живых юнитов в отряде
      *
-     * @return true if there are alive units in squad OR false if all dead
+     * @return "true" if there are no alive units in squad OR "false" if someone is still alive
      */
-    public boolean check() {
+    public boolean isDefeated() {
         return (privilegedSquad.size() == 0 && normalSquad.size() == 0);
     }
 }

@@ -12,11 +12,11 @@ public class ElfMage extends Mage {
     }
 
     @Override
-    public void doAction1() {
+    public void doAction2() {
         // наложить улучшение на персонажа своего отряда
         Unit ally = game.getAlly(this);
         ally.getSquad().adToPrivileged(ally);
-        System.out.printf("%s %s (%s)\n\n", this.getName(), "наложил улучшение на союзника ", ally.getName());
+        System.out.printf("%s %s (%s)\n", this.getName(), "наложил улучшение на союзника", ally.getName());
         this.getSquad().adToNormal(this);
     }
 }

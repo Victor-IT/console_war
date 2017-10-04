@@ -12,13 +12,13 @@ public class UndeadNecromancer extends Mage {
     }
 
     @Override
-    public void doAction1() {
+    public void doAction2() {
         // todo: ввести классы навыки-скилы
         // todo: ввести учёт времени действия скила
         // уменьшение силы урона персонажа противника на 50% на один ход
         Unit enemy = game.getEnemy(this);
-        enemy.setDamageMod(0.5);
-        System.out.printf("%s %s (%s)\n\n", this.getName(), "наслал недуг на противника ", enemy.getName());
+        enemy.setDamageMod(0.5); // todo: вернуть модификатор после хода
+        System.out.printf("%s %s (%s)\n", this.getName(), "наслал недуг на противника", enemy.getName());
         this.getSquad().adToNormal(this);
     }
 }
