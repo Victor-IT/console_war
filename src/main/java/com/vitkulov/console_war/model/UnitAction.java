@@ -2,9 +2,9 @@ package com.vitkulov.console_war.model;
 
 public interface UnitAction {
 
-    void doActions();
+    void doAction();
 
-    void doAction1();
+    void action1();
 
-    void doAction2();
+    void action2();
 }

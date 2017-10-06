@@ -8,7 +8,7 @@ public class OrcArcher extends Archer {
 
     public OrcArcher() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Bow(3)); // стрелять из лука : урон 3 ед.
-        setSecondaryWeapon(new Dagger(2)); // ударить клинком : урон 2 ед.
+        setPrimary(new Bow(3)); // стрелять из лука : урон 3 ед.
+        setSecondary(new Dagger(2)); // ударить клинком : урон 2 ед.
     }
 }

@@ -8,7 +8,7 @@ public class HumanCrossbowman extends Archer {
 
     public HumanCrossbowman() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Crossbow(5)); // стрелять из арбалета : урон 5 ед.
-        setSecondaryWeapon(new Fist(3)); // атаковать противника : урон 3 ед.
+        setPrimary(new Crossbow(5)); // стрелять из арбалета : урон 5 ед.
+        setSecondary(new Fist(3)); // атаковать противника : урон 3 ед.
     }
 }

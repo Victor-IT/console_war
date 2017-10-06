@@ -7,6 +7,6 @@ public class OrcGoblin extends Warrior {
 
     public OrcGoblin() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Club(20)); // атаковать дубиной : урон 20 ед.
+        setPrimary(new Club(20)); // атаковать дубиной : урон 20 ед.
     }
 }

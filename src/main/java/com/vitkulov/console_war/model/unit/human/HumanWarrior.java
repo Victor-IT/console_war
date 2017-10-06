@@ -7,6 +7,6 @@ public class HumanWarrior extends Warrior {
 
     public HumanWarrior() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Sword(18)); // атаковать мечом : урон 18 ед.
+        setPrimary(new Sword(18)); // атаковать мечом : урон 18 ед.
     }
 }

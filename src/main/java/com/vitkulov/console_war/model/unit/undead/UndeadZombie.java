@@ -7,6 +7,6 @@ public class UndeadZombie extends Warrior {
 
     public UndeadZombie() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Spear(18)); // атаковать копьём : урон 18 ед.
+        setPrimary(new Spear(18)); // атаковать копьём : урон 18 ед.
     }
 }

@@ -8,7 +8,7 @@ public class UndeadHunter extends Archer {
 
     public UndeadHunter() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Bow(4)); // стрелять из лука : урон 4 ед.
-        setSecondaryWeapon(new Fist(2)); // атаковать противника : урон 2 ед.
+        setPrimary(new Bow(4)); // стрелять из лука : урон 4 ед.
+        setSecondary(new Fist(2)); // атаковать противника : урон 2 ед.
     }
 }

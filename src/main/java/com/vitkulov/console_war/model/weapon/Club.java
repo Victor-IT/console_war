@@ -10,6 +10,6 @@ public class Club extends Weapon {
 
     @Override
     public String doAction() {
-        return "Ударил дубиной " + "(" + this.name + "): ";
+        return "ударил дубиной " + "(" + this.name + "):";
     }
 }

@@ -7,6 +7,6 @@ public class ElfWarrior extends Warrior {
 
     public ElfWarrior() {
         // Установим начальное оружие и силу урона
-        setPrimaryWeapon(new Sword(15)); // атаковать мечом : урон 15 ед.
+        setPrimary(new Sword(15)); // атаковать мечом : урон 15 ед.
     }
 }

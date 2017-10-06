@@ -35,4 +35,9 @@ public abstract class Weapon implements WeaponAction {
                 ", damage=" + damage +
                 '}';
     }
+
+    @Override
+    public void doAction(Unit unit) {
+        // не используется
+    }
 }

@@ -10,6 +10,6 @@ public class Dagger extends Weapon {
 
     @Override
     public String doAction() {
-        return "ударил кинжалом " + "(" + this.name + "): ";
+        return "ударил кинжалом " + "(" + this.name + "):";
     }
 }

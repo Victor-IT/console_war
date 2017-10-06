@@ -10,6 +10,6 @@ public class Crossbow extends Weapon {
 
     @Override
     public String doAction() {
-        return "выстрелил из арбалета " + "(" + this.name + "): ";
+        return "выстрелил из арбалета " + "(" + this.name + "):";
     }
 }

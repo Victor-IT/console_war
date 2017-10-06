@@ -10,6 +10,6 @@ public class Fist extends Weapon {
 
     @Override
     public String doAction() {
-        return "ударил кулаком " + "(" + this.name + "): ";
+        return "ударил кулаком " + "(" + this.name + "):";
     }
 }

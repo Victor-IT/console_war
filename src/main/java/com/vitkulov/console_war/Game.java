@@ -14,12 +14,12 @@ public class Game {
     public static int turn = 1;
 
     public Squad createLightSquad() {
-        this.lightSquad = squadFactory.createLightSquad(this, 1, 0, 1);
+        this.lightSquad = squadFactory.createLightSquad(this, 1, 3, 4);
         return lightSquad;
     }
 
     public Squad createDarkSquad() {
-        this.darkSquad = squadFactory.createDarkSquad(this, 1, 0, 1);
+        this.darkSquad = squadFactory.createDarkSquad(this, 1, 3, 4);
         return darkSquad;
     }
 
@@ -36,7 +36,9 @@ public class Game {
         } else {
             enemySquad = getLightSquad();
         }
-        return enemySquad.getRandomUnit();
+        Unit enemy = enemySquad.getRandomUnit();
+        enemy.checkAndApplyBuff();
+        return enemy;
     }
 
     public Unit getPrivilegedEnemy(Unit unit) {
@@ -46,7 +48,9 @@ public class Game {
         } else {
             enemySquad = getLightSquad();
         }
-        return enemySquad.getRandomPrivilegedUnit();
+        Unit enemy = enemySquad.getRandomPrivilegedUnit();
+        enemy.checkAndApplyBuff();
+        return enemy;
     }
 
     /**
@@ -62,7 +66,9 @@ public class Game {
         } else {
             allySquad = getDarkSquad();
         }
-        return allySquad.getRandomUnitExcept(unit);
+        Unit ally = allySquad.getRandomUnitExcept(unit);
+        ally.checkAndApplyBuff();
+        return ally;
     }
 
     /**

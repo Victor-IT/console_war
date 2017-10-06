@@ -50,7 +50,7 @@ public class Squad {
         unit.setGame(game);
         unit.setSquad(this);
         normalSquad.remove(unit);
-        unit.setDamageMod(1.5);
+        unit.setDamageModValue(1.5);
 
         if (!privilegedSquad.contains(unit)) {
             privilegedSquad.add(unit);
@@ -66,7 +66,7 @@ public class Squad {
         unit.setGame(game);
         unit.setSquad(this);
         privilegedSquad.remove(unit);
-        unit.setDamageMod(1.0);
+        unit.setDamageModValue(1.0);
 
         if (!normalSquad.contains(unit)) {
             normalSquad.add(unit);
@@ -95,9 +95,9 @@ public class Squad {
         System.out.printf("\nХод %s, отряд %s\n", Game.turn++, squadName);
 
         if (privilegedSquad.size() > 0) {
-            privilegedSquad.get((int) (Math.random() * privilegedSquad.size())).doActions();
+            privilegedSquad.get((int) (Math.random() * privilegedSquad.size())).doAction();
         } else if (normalSquad.size() > 0) {
-            normalSquad.get((int) (Math.random() * normalSquad.size())).doActions();
+            normalSquad.get((int) (Math.random() * normalSquad.size())).doAction();
         } else {
             System.out.println("Отряд " + squadName + " повержен!");
             Game.turn--;

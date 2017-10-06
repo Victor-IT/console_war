@@ -10,6 +10,6 @@ public class Sword extends Weapon {
 
     @Override
     public String doAction() {
-        return "ударил мечом " + "(" + this.name + "): ";
+        return "ударил мечом " + "(" + this.name + "):";
     }
 }
