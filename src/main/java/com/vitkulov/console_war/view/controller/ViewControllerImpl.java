@@ -2,6 +2,8 @@ package com.vitkulov.console_war.view.controller;
 
 import com.vitkulov.console_war.service.GameService;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 public class ViewControllerImpl implements ViewController {
     private GameService service;
 
@@ -20,17 +22,12 @@ public class ViewControllerImpl implements ViewController {
 
     @Override
     public void showGreetings() {
-        System.out.println("Добро пожаловать в игру!");
+        LOGGER.info("Добро пожаловать в игру!\n\n");
     }
 
     @Override
     public void showMenu() {
-        System.out.println("Выберите пункт меню:");
-    }
-
-    @Override
-    public void selectScenario() {
-        service.selectScenario();
+        LOGGER.info("Выберите пункт меню:\n");
     }
 
     @Override
@@ -49,8 +46,8 @@ public class ViewControllerImpl implements ViewController {
     }
 
     @Override
-    public void demo() {
-        service.demo();
+    public void randomGame() {
+        service.randomGame();
     }
 
 }

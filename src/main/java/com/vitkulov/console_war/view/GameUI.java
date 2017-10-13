@@ -28,11 +28,6 @@ public class GameUI {
         controller.showMenu();
     }
 
-    // выбрать сценарий битвы (враждующие стороны)
-    public void selectScenario() {
-        controller.selectScenario();
-    }
-
     // выбрать 1ю сторону
     public void chooseFirstSide() {
         controller.chooseFirstSide();
@@ -48,8 +43,8 @@ public class GameUI {
         controller.startGame();
     }
 
-    // демо сценарий
-    public void demo() {
-        controller.demo();
+    // случайная игра
+    public void randomGame() {
+        controller.randomGame();
     }
 }

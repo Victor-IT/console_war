@@ -9,7 +9,7 @@ public class Spear extends Weapon {
     }
 
     @Override
-    public String doAction() {
-        return "ударил копьём " + "(" + this.name + ") :";
+    public String printAction() {
+        return "ударил копьём " + "(" + this.name + "):";
     }
 }

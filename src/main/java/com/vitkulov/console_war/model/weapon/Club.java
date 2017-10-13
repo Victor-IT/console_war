@@ -9,7 +9,7 @@ public class Club extends Weapon {
     }
 
     @Override
-    public String doAction() {
+    public String printAction() {
         return "ударил дубиной " + "(" + this.name + "):";
     }
 }

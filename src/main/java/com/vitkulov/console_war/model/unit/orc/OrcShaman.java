@@ -6,10 +6,12 @@ import com.vitkulov.console_war.model.skill.Curse;
 import com.vitkulov.console_war.model.skill.PowerUp;
 import com.vitkulov.console_war.model.unit.Mage;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 public class OrcShaman extends Mage {
 
-    // Установим начальное оружие и силу урона
     public OrcShaman() {
+        // Установим начальное оружие и силу урона
         setPrimary(new Curse(0, 1)); // снять улучшение с противника
         setSecondary(new PowerUp(0, 1)); // наложить улучшение на союзника
     }
@@ -20,7 +22,7 @@ public class OrcShaman extends Mage {
         Unit enemy = game.getPrivilegedEnemy(this);
         enemy.addBuff((Skill) getPrimary());
         enemy.checkAndApplyBuff();
-        System.out.printf("%s %s (%s)\n", this.getName(), getPrimary().doAction(), enemy.getName());
+        LOGGER.info("{} {} ({})\n", this.getName(), getSecondary().printAction(), enemy.getName());
         this.decreaseBuffDurationOrDelete();
         this.getSquad().adToNormal(this);
     }
@@ -31,7 +33,7 @@ public class OrcShaman extends Mage {
         Unit ally = game.getAlly(this);
         ally.addBuff((Skill) getSecondary());
         ally.checkAndApplyBuff();
-        System.out.printf("%s %s (%s)\n", this.getName(), getSecondary().doAction(), ally.getName());
+        LOGGER.info("{} {} ({})\n", this.getName(), getSecondary().printAction(), ally.getName());
         this.decreaseBuffDurationOrDelete();
         this.getSquad().adToNormal(this);
     }

@@ -14,7 +14,7 @@ public class Curse extends Skill {
     }
 
     @Override
-    public String doAction() {
+    public String printAction() {
         return "наложил на противника проклятие " + "(" + this.name + "):";
     }
 

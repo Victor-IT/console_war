@@ -5,6 +5,8 @@ import com.vitkulov.console_war.Game;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 /**
  * Класс описывающий структуру отряда как боевой единицы.
  * хранит в себе разбиение на группы (привилегированная, обычная, мертвые)
@@ -92,14 +94,14 @@ public class Squad {
      * В случае поражения отряда вернуть "true"
      */
     public boolean makeTurn() {
-        System.out.printf("\nХод %s, отряд %s\n", Game.turn++, squadName);
+        LOGGER.info("Ход {}, отряд {}\n", Game.turn++, squadName);
 
         if (privilegedSquad.size() > 0) {
             privilegedSquad.get((int) (Math.random() * privilegedSquad.size())).doAction();
         } else if (normalSquad.size() > 0) {
             normalSquad.get((int) (Math.random() * normalSquad.size())).doAction();
         } else {
-            System.out.println("Отряд " + squadName + " повержен!");
+            LOGGER.info("Отряд {} повержен!\n\n", squadName);
             Game.turn--;
             return true;
         }
@@ -109,7 +111,7 @@ public class Squad {
     /**
      * Получить рандомного юнита из отряда
      *
-     * @return random unit from squad
+     * @return randomGame unit from squad
      */
     public Unit getRandomUnit() {
         ArrayList<Unit> units = new ArrayList<>();
@@ -123,7 +125,7 @@ public class Squad {
      * Однако, если кроме текущего никого не осталось, вернёт себя же.
      *
      * @param unit юнит для исключения из выборки
-     * @return random unit from squad
+     * @return randomGame unit from squad
      */
     public Unit getRandomUnitExcept(Unit unit) {
         ArrayList<Unit> units = new ArrayList<>();
@@ -140,7 +142,7 @@ public class Squad {
      * Получить рандомного юнита из привилегированного отряда.
      * Если он пуст, получить обычного.
      *
-     * @return random privileged unit from squad
+     * @return randomGame privileged unit from squad
      */
     public Unit getRandomPrivilegedUnit() {
         Unit enemyUnit = getRandomUnit();

@@ -9,7 +9,7 @@ public class MagicStaff extends Weapon {
     }
 
     @Override
-    public String doAction() {
-        return "атаковал магией " + "(" + this.name + ") :";
+    public String printAction() {
+        return "атаковал магией " + "(" + this.name + "):";
     }
 }

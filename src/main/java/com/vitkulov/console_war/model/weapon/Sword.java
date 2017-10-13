@@ -9,7 +9,7 @@ public class Sword extends Weapon {
     }
 
     @Override
-    public String doAction() {
+    public String printAction() {
         return "ударил мечом " + "(" + this.name + "):";
     }
 }

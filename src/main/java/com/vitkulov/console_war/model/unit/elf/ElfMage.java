@@ -6,6 +6,8 @@ import com.vitkulov.console_war.model.skill.PowerUp;
 import com.vitkulov.console_war.model.unit.Mage;
 import com.vitkulov.console_war.model.weapon.MagicStaff;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 public class ElfMage extends Mage {
 
     public ElfMage() {
@@ -20,7 +22,7 @@ public class ElfMage extends Mage {
         Unit ally = game.getAlly(this);
         ally.addBuff((Skill) getSecondary());
         ally.checkAndApplyBuff();
-        System.out.printf("%s %s (%s)\n", this.getName(), getSecondary().doAction(), ally.getName());
+        LOGGER.info("{} {} ({})\n", this.getName(), getSecondary().printAction(), ally.getName());
         this.decreaseBuffDurationOrDelete();
         this.getSquad().adToNormal(this);
     }

@@ -6,6 +6,8 @@ import com.vitkulov.console_war.model.skill.Ailment;
 import com.vitkulov.console_war.model.unit.Mage;
 import com.vitkulov.console_war.model.weapon.MagicStaff;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 public class UndeadNecromancer extends Mage {
 
     public UndeadNecromancer() {
@@ -20,7 +22,7 @@ public class UndeadNecromancer extends Mage {
         Unit enemy = game.getEnemy(this);
         enemy.addBuff((Skill) getSecondary());
         enemy.checkAndApplyBuff();
-        System.out.printf("%s %s (%s)\n", this.getName(), getSecondary().doAction(), enemy.getName());
+        LOGGER.info("{} {} ({})\n", this.getName(), getSecondary().printAction(), enemy.getName());
         this.getSquad().adToNormal(this);
     }
 }

@@ -38,6 +38,6 @@ public abstract class Weapon implements WeaponAction {
 
     @Override
     public void doAction(Unit unit) {
-        // не используется
+        // для оружия не используется
     }
 }

@@ -14,7 +14,7 @@ public class Ailment extends Skill {
     }
 
     @Override
-    public String doAction() {
+    public String printAction() {
         return "наложил на противника недуг " + "(" + this.name + "):";
     }
 

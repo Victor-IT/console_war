@@ -4,6 +4,8 @@ import com.vitkulov.console_war.model.Squad;
 import com.vitkulov.console_war.model.Unit;
 import com.vitkulov.console_war.model.squad_factory.SquadFactory;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 /**
  * Основной класс-сервер, где происходит ход игры и взаимодействие между объектами.
  */
@@ -94,37 +96,54 @@ public class Game {
 
     /**
      * Вывести имя отряда победителя
+     *
      * @return
      */
     public boolean checkWin() {
         boolean gameOver = false;
 
         if (gameOver = lightSquad.isDefeated()) {
-            System.out.printf("\nОтряд %s уничтожен.\nПобедил отряд %s", lightSquad.getSquadName(), darkSquad.getSquadName());
+            LOGGER.info("Отряд {} уничтожен. Победил отряд {}\n", lightSquad.getSquadName(), darkSquad.getSquadName());
+            LOGGER.info("В живых осталось: \n");
+            for (Unit unit : darkSquad.getPrivilegedSquad()) {
+                LOGGER.info(unit.toString());
+            }
+            for (Unit unit : darkSquad.getNormalSquad()) {
+                LOGGER.info(unit.toString());
+            }
         } else if (gameOver = darkSquad.isDefeated()) {
-            System.out.printf("\nОтряд %s уничтожен.\nПобедил отряд %s", darkSquad.getSquadName(), lightSquad.getSquadName());
+            LOGGER.info("Отряд {} уничтожен. Победил отряд {}\n", darkSquad.getSquadName(), lightSquad.getSquadName());
+            LOGGER.info("В живых осталось: \n");
+            for (Unit unit : lightSquad.getPrivilegedSquad()) {
+                LOGGER.info(unit.toString());
+            }
+            for (Unit unit : lightSquad.getNormalSquad()) {
+                LOGGER.info(unit.toString());
+            }
         }
-        System.out.println("\nКонец игры...");
+        LOGGER.info("Конец игры...\n\n\n");
         return gameOver;
     }
 
     public void runGame() {
         boolean winner = false;
+        int step;
 
         // выбрать очередность хода для стороны
-        // todo: создать жребий очередности хода
+        step = (int) (Math.random() * 2);
 
-        // создаём цикл ходов
         do {
             // ход светлой стороны
-            if (!winner) {
+            if (!winner && step == 0) {
                 lightSquad.makeTurn();
                 winner = darkSquad.isDefeated();
+                step = 1;
             }
             // ход тёмной стороны
-            if (!winner) {
+            if (!winner && step == 1) {
                 darkSquad.makeTurn();
                 winner = lightSquad.isDefeated();
+                step = 0;
             }
         } while (!winner);
 

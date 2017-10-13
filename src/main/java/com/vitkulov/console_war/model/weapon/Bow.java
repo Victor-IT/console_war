@@ -9,7 +9,7 @@ public class Bow extends Weapon {
     }
 
     @Override
-    public String doAction() {
+    public String printAction() {
         return "выстрелил из лука " + "(" + this.name + "):";
     }
 }

@@ -1,17 +1,15 @@
 package com.vitkulov.console_war.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
+import static com.vitkulov.console_war.RunApp.LOGGER;
 
 /**
  * Класс для валидации вводимых пользователем данных в консоль.
  */
 public class Validator implements AutoCloseable {
-    private static final Logger LOG = LoggerFactory.getLogger(Validator.class);
     private final IO io;
 
     public Validator(final IO io) {
@@ -33,7 +31,7 @@ public class Validator implements AutoCloseable {
                 return Double.parseDouble(this.io.read());
             } catch (NumberFormatException n) {
                 invalid = true;
-                LOG.error("Convert number error", n);
+                LOGGER.error("Convert number error", n);
                 System.out.println("Error read, please enter the number.");
             }
         } while (invalid);
@@ -59,7 +57,7 @@ public class Validator implements AutoCloseable {
                 return operator;
             } else {
                 invalid = true;
-                LOG.error("No such operator present");
+                LOGGER.error("No such operator present");
                 System.out.println("Please enter the correct operation symbol");
             }
         } while (invalid);
@@ -114,7 +112,7 @@ public class Validator implements AutoCloseable {
                 }
             } catch (NumberFormatException n) {
                 invalid = true;
-                LOG.error("Convert number error or key not present", n);
+                LOGGER.error("Convert number error or key not present", n);
                 System.out.println("Entered key not present, please try again.");
             }
         } while (invalid);
@@ -136,7 +134,7 @@ public class Validator implements AutoCloseable {
                 return Integer.parseInt(this.io.read());
             } catch (NumberFormatException n) {
                 invalid = true;
-                LOG.error("Convert number error", n);
+                LOGGER.error("Convert number error", n);
                 System.out.println("Error read, please enter the number.");
             }
         } while (invalid);

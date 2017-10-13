@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import static com.vitkulov.console_war.RunApp.LOGGER;
+
 /**
  * Класс описывающий юнита - общий скелет для всех юнитов.
  */
@@ -146,11 +148,11 @@ public abstract class Unit implements UnitAction {
      */
     public int hit(double damage) {
         this.health -= damage;
-        System.out.printf("%s получил урон: -%s HP", this.getName(), damage);
+        LOGGER.info("{} получил урон: -{} HP\n", this.getName(), damage);
         if (health > 0) {
-            System.out.println(" | Осталось: " + health + " HP");
+            LOGGER.info("Осталось: {} HP\n\n", health);
         } else {
-            System.out.println(" | Убит");
+            LOGGER.info("Убит\n\n");
             return 0;
         }
         return 1;
@@ -158,7 +160,9 @@ public abstract class Unit implements UnitAction {
 
     @Override
     public String toString() {
-        return " " + name + ", health=" + health + ", damageModValue=" + damageModValue + "\n";
+        return " "
+                + name
+                + " | " + health + " HP\n";
     }
 
     @Override
@@ -182,7 +186,7 @@ public abstract class Unit implements UnitAction {
     public void action1() {
         Unit enemy = game.getEnemy(this); // получить противника
         double damage = this.countPrimaryDamage(); // вычислить собственный урон
-        System.out.printf("%s %s %s ед.\n", this.getName(), getPrimary().doAction(), damage);
+        LOGGER.info("{} {} {} ед.\n", this.getName(), getPrimary().printAction(), damage);
         game.hit(enemy, damage); // нанести противнику урон
         this.decreaseBuffDurationOrDelete(); // отсчитать -1 ход баффам на себе
         this.getSquad().adToNormal(this); // вернуться в обычную группу и вернуть damageModValue в 1.0 (первоначальное)
@@ -192,7 +196,7 @@ public abstract class Unit implements UnitAction {
     public void action2() {
         Unit enemy = game.getEnemy(this);
         double damage = this.countSecondaryDamage();
-        System.out.printf("%s %s %s ед.\n", this.getName(), getSecondary().doAction(), damage);
+        LOGGER.info("{} {} {} ед.\n", this.getName(), getSecondary().printAction(), damage);
         game.hit(enemy, damage);
         this.decreaseBuffDurationOrDelete();
         this.getSquad().adToNormal(this);

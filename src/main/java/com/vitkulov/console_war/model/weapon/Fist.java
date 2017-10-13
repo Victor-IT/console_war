@@ -9,7 +9,7 @@ public class Fist extends Weapon {
     }
 
     @Override
-    public String doAction() {
+    public String printAction() {
         return "ударил кулаком " + "(" + this.name + "):";
     }
 }

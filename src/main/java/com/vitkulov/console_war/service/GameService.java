@@ -34,13 +34,23 @@ public interface GameService {
      */
     Squad getLightSquad();
 
-    void selectScenario();
-
+    /**
+     * Выбрать первую сторону
+     */
     void chooseFirstSide();
 
+    /**
+     * Выбрать вторую сторону
+     */
     void chooseSecondSide();
 
+    /**
+     * Начать игру
+     */
     void startGame();
 
-    void demo();
+    /**
+     * Начать случайную игру
+     */
+    void randomGame();
 }

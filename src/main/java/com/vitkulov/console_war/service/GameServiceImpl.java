@@ -45,11 +45,6 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void selectScenario() {
-
-    }
-
-    @Override
     public void chooseFirstSide() {
 
     }
@@ -64,7 +59,7 @@ public class GameServiceImpl implements GameService {
         game.runGame();
     }
 
-    public void demo() {
+    public void randomGame() {
         createLightSquad();
         createDarkSquad();
         startGame();

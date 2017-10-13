@@ -5,11 +5,14 @@ import com.vitkulov.console_war.service.GameServiceImpl;
 import com.vitkulov.console_war.view.GameUI;
 import com.vitkulov.console_war.view.controller.ViewController;
 import com.vitkulov.console_war.view.controller.ViewControllerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Класс стартующий приложение
  */
 public class RunApp {
+    public static final Logger LOGGER = LoggerFactory.getLogger("L1");
     private GameUI ui;
 
     private RunApp(final GameUI ui) {
@@ -17,9 +20,9 @@ public class RunApp {
     }
 
     private void start() {
-        // отобразить стартовое UI
+        LOGGER.info("- - - - - - - Starting new game - - - - - - -\n\n");
         ui.showGreetings();
-        ui.demo();
+        ui.randomGame();
     }
 
     public static void main(String[] args) {
