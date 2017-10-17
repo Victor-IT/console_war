@@ -6,8 +6,9 @@ import com.vitkulov.console_war.model.unit.human.HumanCrossbowman;
 import com.vitkulov.console_war.model.unit.human.HumanMage;
 import com.vitkulov.console_war.model.unit.human.HumanWarrior;
 
-public class HumanSquadFactory {
+public class HumanSquadFactory implements SquadFactory {
 
+    @Override
     public Squad createSquad(Game game, int mageCount, int archerCount, int warriorCount) {
         Squad squad = new Squad(game);
         squad.setSquadName("HumanSquad");

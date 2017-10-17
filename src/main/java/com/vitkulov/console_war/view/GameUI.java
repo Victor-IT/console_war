@@ -24,18 +24,18 @@ public class GameUI {
     }
 
     // показать меню
-    public void showMenu() {
-        controller.showMenu();
+    public void showConsoleMenu() {
+        controller.showConsoleMenu();
     }
 
-    // выбрать 1ю сторону
-    public void chooseFirstSide() {
-        controller.chooseFirstSide();
+    // выбрать отряд для светлой стороны
+    public void chooseLightSide() {
+        controller.chooseLightSide();
     }
 
-    // выбрать 2ю сторону
-    public void chooseSecondSide() {
-        controller.chooseSecondSide();
+    // выбрать отряд для темной стороны
+    public void chooseDarkSide() {
+        controller.chooseDarkSide();
     }
 
     // начать игру

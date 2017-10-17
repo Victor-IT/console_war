@@ -1,19 +1,27 @@
 package com.vitkulov.console_war.service;
 
 import com.vitkulov.console_war.model.Squad;
+import com.vitkulov.console_war.model.squad_factory.SquadFactory;
 
 public interface GameService {
+    /**
+     * Создать отряд
+     * @param squadFactory передаём тип фабрики юнитов
+     * @return squad
+     */
+    Squad createSquad(SquadFactory squadFactory);
+
     /**
      * Создать отряд светлых (эльфы или люди)
      * @return squad
      */
-    Squad createLightSquad();
+    void createLightSquad();
 
     /**
-     * Создать отряд темный (орки или нежить)
+     * Создать отряд темных (орки или нежить)
      * @return squad
      */
-    Squad createDarkSquad();
+    void createDarkSquad();
 
     /**
      * Проверить выживших
@@ -35,14 +43,14 @@ public interface GameService {
     Squad getLightSquad();
 
     /**
-     * Выбрать первую сторону
+     * Выбрать отряд для светлой стороны
      */
-    void chooseFirstSide();
+    void chooseLightSide();
 
     /**
-     * Выбрать вторую сторону
+     * Выбрать отряд для тёмной стороны
      */
-    void chooseSecondSide();
+    void chooseDarkSide();
 
     /**
      * Начать игру

@@ -2,7 +2,7 @@ package com.vitkulov.console_war;
 
 import com.vitkulov.console_war.model.Squad;
 import com.vitkulov.console_war.model.Unit;
-import com.vitkulov.console_war.model.squad_factory.SquadFactory;
+import com.vitkulov.console_war.model.squad_factory.*;
 
 import static com.vitkulov.console_war.RunApp.LOGGER;
 
@@ -12,17 +12,35 @@ import static com.vitkulov.console_war.RunApp.LOGGER;
 public class Game {
     private Squad lightSquad;
     private Squad darkSquad;
-    private SquadFactory squadFactory = new SquadFactory();
     public static int turn = 1;
 
-    public Squad createLightSquad() {
-        this.lightSquad = squadFactory.createLightSquad(this, 1, 3, 4);
-        return lightSquad;
+    public void createLightSquad() {
+        if ((int) (Math.random() * 2) == 0) {
+            this.lightSquad = createSquad(new ElfSquadFactory());
+        } else {
+            this.lightSquad = createSquad(new HumanSquadFactory());
+        }
     }
 
-    public Squad createDarkSquad() {
-        this.darkSquad = squadFactory.createDarkSquad(this, 1, 3, 4);
-        return darkSquad;
+    public void createDarkSquad() {
+        if ((int) (Math.random() * 2) == 0) {
+            this.darkSquad = createSquad(new OrcSquadFactory());
+
+        } else {
+            this.darkSquad = createSquad(new UndeadSquadFactory());
+
+        }
+    }
+
+    public Squad createSquad(SquadFactory squadFactory) {
+        Squad squad = squadFactory.createSquad(this, 1, 3, 4);
+        LOGGER.info("Создан светлый отряд {}\n", squad.getSquadName());
+        for (Unit unit : squad.getNormalSquad()) {
+            LOGGER.info(unit.toString());
+        }
+        LOGGER.info("\n");
+
+        return squad;
     }
 
     /**

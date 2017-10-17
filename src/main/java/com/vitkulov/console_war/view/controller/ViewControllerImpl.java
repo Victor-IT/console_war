@@ -13,7 +13,7 @@ public class ViewControllerImpl implements ViewController {
 
     public ViewControllerImpl(GameService service) {
         this();
-        setService(service);
+        this.service = service;
     }
 
     public void setService(GameService service) {
@@ -26,18 +26,18 @@ public class ViewControllerImpl implements ViewController {
     }
 
     @Override
-    public void showMenu() {
+    public void showConsoleMenu() {
         LOGGER.info("Выберите пункт меню:\n");
     }
 
     @Override
-    public void chooseFirstSide() {
-        service.chooseFirstSide();
+    public void chooseLightSide() {
+        service.chooseLightSide();
     }
 
     @Override
-    public void chooseSecondSide() {
-        service.chooseSecondSide();
+    public void chooseDarkSide() {
+        service.chooseDarkSide();
     }
 
     @Override

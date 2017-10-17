@@ -6,8 +6,9 @@ import com.vitkulov.console_war.model.unit.orc.OrcArcher;
 import com.vitkulov.console_war.model.unit.orc.OrcGoblin;
 import com.vitkulov.console_war.model.unit.orc.OrcShaman;
 
-public class OrcSquadFactory {
+public class OrcSquadFactory implements SquadFactory {
 
+    @Override
     public Squad createSquad(Game game, int mageCount, int archerCount, int warriorCount) {
         Squad squad = new Squad(game);
         squad.setSquadName("OrcSquad");

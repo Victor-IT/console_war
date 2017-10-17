@@ -6,8 +6,9 @@ import com.vitkulov.console_war.model.unit.undead.UndeadHunter;
 import com.vitkulov.console_war.model.unit.undead.UndeadNecromancer;
 import com.vitkulov.console_war.model.unit.undead.UndeadZombie;
 
-public class UndeadSquadFactory {
+public class UndeadSquadFactory implements SquadFactory {
 
+    @Override
     public Squad createSquad(Game game, int mageCount, int archerCount, int warriorCount) {
         Squad squad = new Squad(game);
         squad.setSquadName("UndeadSquad");

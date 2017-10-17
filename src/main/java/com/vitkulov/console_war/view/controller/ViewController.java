@@ -10,17 +10,17 @@ public interface ViewController {
     /**
      * Отобразить меню
      */
-    void showMenu();
+    void showConsoleMenu();
 
     /**
-     * Выбрать первую сторону
+     * Выбрать отряд для светлой стороны
      */
-    void chooseFirstSide();
+    void chooseLightSide();
 
     /**
-     * Выбрать вторую сторону
+     * Выбрать отряд для темной стороны
      */
-    void chooseSecondSide();
+    void chooseDarkSide();
 
     /**
      * Начать игру

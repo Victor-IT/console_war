@@ -2,6 +2,7 @@ package com.vitkulov.console_war.service;
 
 import com.vitkulov.console_war.Game;
 import com.vitkulov.console_war.model.Squad;
+import com.vitkulov.console_war.model.squad_factory.SquadFactory;
 
 public class GameServiceImpl implements GameService {
     private Game game;
@@ -20,13 +21,18 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Squad createLightSquad() {
-        return game.createLightSquad();
+    public Squad createSquad(SquadFactory squadFactory) {
+        return game.createSquad(squadFactory);
     }
 
     @Override
-    public Squad createDarkSquad() {
-        return game.createDarkSquad();
+    public void createLightSquad() {
+        game.createLightSquad();
+    }
+
+    @Override
+    public void createDarkSquad() {
+        game.createDarkSquad();
     }
 
     @Override
@@ -45,12 +51,12 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void chooseFirstSide() {
+    public void chooseLightSide() {
 
     }
 
     @Override
-    public void chooseSecondSide() {
+    public void chooseDarkSide() {
 
     }
 

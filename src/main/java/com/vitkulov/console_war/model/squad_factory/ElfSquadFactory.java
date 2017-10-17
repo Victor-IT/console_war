@@ -6,7 +6,9 @@ import com.vitkulov.console_war.model.unit.elf.ElfArcher;
 import com.vitkulov.console_war.model.unit.elf.ElfMage;
 import com.vitkulov.console_war.model.unit.elf.ElfWarrior;
 
-public class ElfSquadFactory {
+public class ElfSquadFactory implements SquadFactory {
+
+    @Override
     public Squad createSquad(Game game, int mageCount, int archerCount, int warriorCount) {
         Squad squad = new Squad(game);
         squad.setSquadName("ElfSquad");
