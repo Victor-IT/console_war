@@ -17,6 +17,7 @@ public class PowerUp extends Skill {
     public String printAction() {
         return "наложил на союзника улучшение " + "(" + this.name + "):";
     }
+
     @Override
     public void doAction(Unit unit) {
         if (!this.isUsed){

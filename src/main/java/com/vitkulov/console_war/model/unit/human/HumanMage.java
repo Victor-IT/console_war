@@ -22,7 +22,7 @@ public class HumanMage extends Mage {
         Unit ally = game.getAlly(this);
         ally.addBuff((Skill) getSecondary());
         ally.checkAndApplyBuff();
-        LOGGER.info("{} {} ({})\n", this.getName(), getSecondary().printAction(), ally.getName());
+        LOGGER.info("{} {} ({})\n\n", this.getName(), getSecondary().printAction(), ally.getName());
         this.decreaseBuffDurationOrDelete();
         this.getSquad().adToNormal(this);
     }

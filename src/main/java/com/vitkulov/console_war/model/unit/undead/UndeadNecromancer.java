@@ -22,7 +22,7 @@ public class UndeadNecromancer extends Mage {
         Unit enemy = game.getEnemy(this);
         enemy.addBuff((Skill) getSecondary());
         enemy.checkAndApplyBuff();
-        LOGGER.info("{} {} ({})\n", this.getName(), getSecondary().printAction(), enemy.getName());
+        LOGGER.info("{} {} ({})\n\n", this.getName(), getSecondary().printAction(), enemy.getName());
         this.getSquad().adToNormal(this);
     }
 }

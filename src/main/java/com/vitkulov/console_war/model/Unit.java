@@ -65,14 +65,6 @@ public abstract class Unit implements UnitAction {
         this.secondary = secondaryWep;
     }
 
-    public Double getHealth() {
-        return health;
-    }
-
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
     public double getDamageModValue() {
         return damageModValue;
     }

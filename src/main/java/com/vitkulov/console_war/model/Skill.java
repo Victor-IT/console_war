@@ -12,32 +12,8 @@ public abstract class Skill implements WeaponAction, Cloneable{
         this.duration = duration;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double getDamage() {
         return damage;
-    }
-
-    public void setDamage(double damage) {
-        this.damage = damage;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public boolean isUsed() {
-        return isUsed;
     }
 
     public void setUsed(boolean used) {

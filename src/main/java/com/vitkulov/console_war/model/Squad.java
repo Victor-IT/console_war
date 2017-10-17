@@ -39,10 +39,6 @@ public class Squad {
         return normalSquad;
     }
 
-    public List<Unit> getDeadList() {
-        return deadList;
-    }
-
     /**
      * Добавить/перенести юнита в привилегированную группу
      *

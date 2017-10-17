@@ -12,7 +12,7 @@ public class GameServiceImpl implements GameService {
 
     public GameServiceImpl(Game game) {
         this();
-        setGame(game);
+        this.game = game;
     }
 
     public void setGame(Game game) {
