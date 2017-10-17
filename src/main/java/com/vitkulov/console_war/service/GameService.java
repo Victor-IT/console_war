@@ -6,7 +6,7 @@ import com.vitkulov.console_war.model.squad_factory.SquadFactory;
 public interface GameService {
     /**
      * Создать отряд
-     * @param squadFactory передаём тип фабрики юнитов
+     * @param squadFactory фабрики соответствующего класса юнитов
      * @return squad
      */
     Squad createSquad(SquadFactory squadFactory);

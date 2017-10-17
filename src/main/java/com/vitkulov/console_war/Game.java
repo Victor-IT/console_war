@@ -25,7 +25,6 @@ public class Game {
     public void createDarkSquad() {
         if ((int) (Math.random() * 2) == 0) {
             this.darkSquad = createSquad(new OrcSquadFactory());
-
         } else {
             this.darkSquad = createSquad(new UndeadSquadFactory());
 
@@ -34,7 +33,12 @@ public class Game {
 
     public Squad createSquad(SquadFactory squadFactory) {
         Squad squad = squadFactory.createSquad(this, 1, 3, 4);
-        LOGGER.info("Создан светлый отряд {}\n", squad.getSquadName());
+        if (squadFactory.getClass() == ElfSquadFactory.class || squadFactory.getClass() == HumanSquadFactory.class) {
+            LOGGER.info("Создан светлый отряд {}\n", squad.getSquadName());
+        } else {
+            LOGGER.info("Создан тёмный отряд {}\n", squad.getSquadName());
+        }
+
         for (Unit unit : squad.getNormalSquad()) {
             LOGGER.info(unit.toString());
         }
