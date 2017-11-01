@@ -2,7 +2,7 @@ package com.vitkulov.console_war.service;
 
 import com.vitkulov.console_war.Game;
 import com.vitkulov.console_war.model.Squad;
-import com.vitkulov.console_war.model.squad_factory.SquadFactory;
+import com.vitkulov.console_war.model.squad_factory.*;
 
 public class GameServiceImpl implements GameService {
     private Game game;
@@ -26,13 +26,13 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void createLightSquad() {
-        game.createLightSquad();
+    public void createRandomLightSquad() {
+        game.createRandomLightSquad();
     }
 
     @Override
-    public void createDarkSquad() {
-        game.createDarkSquad();
+    public void createRandomDarkSquad() {
+        game.createRandomDarkSquad();
     }
 
     @Override
@@ -51,23 +51,48 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void chooseLightSide() {
-
+    public void createLightSquad(int number) {
+        switch (number) {
+            case 1:
+                game.setLightSquad(createSquad(new HumanSquadFactory()));
+                break;
+            case 2:
+                game.setLightSquad(createSquad(new ElfSquadFactory()));
+                break;
+        }
     }
 
     @Override
-    public void chooseDarkSide() {
-
+    public void createDarkSquad(int number) {
+        switch (number) {
+            case 1:
+                game.setDarkSquad(createSquad(new OrcSquadFactory()));
+                break;
+            case 2:
+                game.setDarkSquad(createSquad(new UndeadSquadFactory()));
+                break;
+        }
     }
 
     @Override
-    public void startGame() {
-        game.runGame();
+    public int startGame() {
+        int answer = 0;
+
+        if (getLightSquad() == null) {
+            System.out.println("Светлый отряд пуст. Создайте светлый отряд");
+            answer = 1;
+        } else if (getDarkSquad() == null) {
+            System.out.println("Темный отряд пуст. Создайте темный отряд");
+            answer = 1;
+        } else {
+            game.runGame();
+        }
+        return answer;
     }
 
     public void randomGame() {
-        createLightSquad();
-        createDarkSquad();
+        createRandomLightSquad();
+        createRandomDarkSquad();
         startGame();
     }
 }

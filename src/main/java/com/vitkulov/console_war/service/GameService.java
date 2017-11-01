@@ -15,13 +15,13 @@ public interface GameService {
      * Создать отряд светлых (эльфы или люди)
      * @return squad
      */
-    void createLightSquad();
+    void createRandomLightSquad();
 
     /**
      * Создать отряд темных (орки или нежить)
      * @return squad
      */
-    void createDarkSquad();
+    void createRandomDarkSquad();
 
     /**
      * Проверить выживших
@@ -43,19 +43,19 @@ public interface GameService {
     Squad getLightSquad();
 
     /**
-     * Выбрать отряд для светлой стороны
+     * Создать светлый отряд
      */
-    void chooseLightSide();
+    void createLightSquad(int number);
 
     /**
-     * Выбрать отряд для тёмной стороны
+     * Создать тёмный отряд
      */
-    void chooseDarkSide();
+    void createDarkSquad(int number);
 
     /**
      * Начать игру
      */
-    void startGame();
+    int startGame();
 
     /**
      * Начать случайную игру

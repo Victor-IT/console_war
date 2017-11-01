@@ -3,13 +3,13 @@ package com.vitkulov.console_war.model;
 public interface WeaponAction {
 
     /**
-     * Print action for weapon/skill
-     * @return action description
+     * Вывести описание действия для оружия/скилла
+     * @return описание действия
      */
     String printAction();
 
     /**
-     * Do action for weapon/skill on unit
+     * Выполнить действие оружия/скилла на юните
      * @param unit for action
      */
     void doAction(Unit unit);

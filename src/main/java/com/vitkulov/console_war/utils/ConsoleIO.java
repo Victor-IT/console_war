@@ -7,9 +7,9 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
- * Class for reading input and println output in console.
- * Based on scanner class
-*/
+ * Класс для чтения входящего потока и вывода в консоль
+ * Основан на классе scanner
+ */
 public class ConsoleIO implements IO {
     private static final Logger LOG = LoggerFactory.getLogger(ConsoleIO.class);
     private final Scanner scanner;
@@ -21,9 +21,9 @@ public class ConsoleIO implements IO {
     }
 
     /**
-     * Read next line on input
+     * Считать следующую входящую строку
      *
-     * @return string line
+     * @return строка
      */
     @Override
     public String read() {
@@ -31,9 +31,9 @@ public class ConsoleIO implements IO {
     }
 
     /**
-     * Prints value to output
+     * Вывести значение в исходящий поток
      *
-     * @param value value to string
+     * @param value значение в строку
      */
     @Override
     public void println(Object value) {

@@ -107,7 +107,7 @@ public class Squad {
     /**
      * Получить рандомного юнита из отряда
      *
-     * @return randomGame unit from squad
+     * @return random unit
      */
     public Unit getRandomUnit() {
         ArrayList<Unit> units = new ArrayList<>();
@@ -121,7 +121,7 @@ public class Squad {
      * Однако, если кроме текущего никого не осталось, вернёт себя же.
      *
      * @param unit юнит для исключения из выборки
-     * @return randomGame unit from squad
+     * @return random unit
      */
     public Unit getRandomUnitExcept(Unit unit) {
         ArrayList<Unit> units = new ArrayList<>();
@@ -138,7 +138,7 @@ public class Squad {
      * Получить рандомного юнита из привилегированного отряда.
      * Если он пуст, получить обычного.
      *
-     * @return randomGame privileged unit from squad
+     * @return random privileged unit
      */
     public Unit getRandomPrivilegedUnit() {
         Unit enemyUnit = getRandomUnit();
@@ -151,7 +151,7 @@ public class Squad {
     /**
      * Проверить наличие живых юнитов в отряде
      *
-     * @return "true" if there are no alive units in squad OR "false" if someone is still alive
+     * @return "true" если не осталось живых юнитов в отряде или "false" если кто-то ещё жив
      */
     public boolean isDefeated() {
         return (privilegedSquad.size() == 0 && normalSquad.size() == 0);

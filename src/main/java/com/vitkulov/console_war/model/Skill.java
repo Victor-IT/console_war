@@ -1,5 +1,8 @@
 package com.vitkulov.console_war.model;
 
+/**
+ * Класс описывающий навык/скилл в игре
+ */
 public abstract class Skill implements WeaponAction, Cloneable{
     protected String name;
     protected double damage;

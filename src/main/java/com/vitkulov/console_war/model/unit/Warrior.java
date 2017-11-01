@@ -3,7 +3,7 @@ package com.vitkulov.console_war.model.unit;
 import com.vitkulov.console_war.model.Unit;
 
 /**
- * Класс юнита - воин
+ * Класc юнита - воин
  */
 public class Warrior extends Unit {
 

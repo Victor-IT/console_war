@@ -1,10 +1,6 @@
 package com.vitkulov.console_war.utils;
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
-
-import static com.vitkulov.console_war.RunApp.LOGGER;
 
 /**
  * Класс для валидации вводимых пользователем данных в консоль.
@@ -17,11 +13,11 @@ public class Validator implements AutoCloseable {
     }
 
     /**
-     * Get number from input.
-     * Repeats until input is correct
+     * Получить число из входящего потока.
+     * Повторять до тех пор, когда ввод будет корректным
      *
-     * @param message - prompt message
-     * @return double number
+     * @param message - сообщение
+     * @return double
      */
     public double getDouble(String message) {
         boolean invalid;
@@ -31,44 +27,18 @@ public class Validator implements AutoCloseable {
                 return Double.parseDouble(this.io.read());
             } catch (NumberFormatException n) {
                 invalid = true;
-                LOGGER.error("Convert number error", n);
-                System.out.println("Error read, please enter the number.");
+//                LOGGER.error("Convert number error", n);
+                System.out.println("Ошибка чтения, введите корректное число.");
             }
         } while (invalid);
         throw new NumberFormatException();
     }
 
     /**
-     * Get string operator from input.
-     * Repeats until the string is equals to one of arithmetic operators
+     * Сравнить ввод с предустановленным ответом
      *
-     * @param message - prompt message
-     * @return string operator symbol
-     */
-    public String getOperator(String message) {
-
-        boolean invalid;
-        List<String> ops = Arrays.asList("+", "-", "*", "/", "^");
-        String operator;
-        do {
-            System.out.println(message);
-            operator = this.io.read();
-            if (ops.contains(operator)) {
-                return operator;
-            } else {
-                invalid = true;
-                LOGGER.error("No such operator present");
-                System.out.println("Please enter the correct operation symbol");
-            }
-        } while (invalid);
-        throw new UnsupportedOperationException("No such operator present: " + operator);
-    }
-
-    /**
-     * Compare input to predefined answer
-     *
-     * @param message - prompt message
-     * @param answer  - predefined value to compare
+     * @param message - сообщение
+     * @param answer  - предустановленное сообщение для сравнения
      * @return boolean
      */
     public boolean compare(final String message, final String answer) {
@@ -81,9 +51,9 @@ public class Validator implements AutoCloseable {
     }
 
     /**
-     * Get string from input
+     * Получить строку из ввода
      *
-     * @param message - prompt message
+     * @param message - сообщение
      * @return string
      */
     public String getString(String message) {
@@ -92,12 +62,12 @@ public class Validator implements AutoCloseable {
     }
 
     /**
-     * Get number from input.
-     * Repeat until input is equals to one of element in collection "keys"
+     * Получить число из ввода
+     * Повторять до тех пор, пока ввод не будет соответствовать одному из элементов коллекции "keys"
      *
-     * @param message - prompt message
-     * @param keys    - collection of elements for equals
-     * @return integer number
+     * @param message - сообщение
+     * @param keys    - коллекция элементов для сравнения
+     * @return Integer
      */
     public Integer getIntFromList(final String message, final Collection<Integer> keys) {
         boolean invalid;
@@ -112,19 +82,19 @@ public class Validator implements AutoCloseable {
                 }
             } catch (NumberFormatException n) {
                 invalid = true;
-                LOGGER.error("Convert number error or key not present", n);
-                System.out.println("Entered key not present, please try again.");
+//                LOGGER.error("Convert number error or key not present", n);
+                System.out.println("Такого номера нет в наборе, попробуйте снова.");
             }
         } while (invalid);
         throw new NumberFormatException();
     }
 
     /**
-     * Get int from input
-     * Repeats until input is correct
+     * Получить число из ввода
+     * Повторять, пока ввод не будет корректным
      *
-     * @param message - prompt message
-     * @return integer number
+     * @param message - сообщение
+     * @return int
      */
     public int getInt(String message) {
         boolean invalid;
@@ -134,8 +104,8 @@ public class Validator implements AutoCloseable {
                 return Integer.parseInt(this.io.read());
             } catch (NumberFormatException n) {
                 invalid = true;
-                LOGGER.error("Convert number error", n);
-                System.out.println("Error read, please enter the number.");
+//                LOGGER.error("Convert number error", n);
+                System.out.println("Ошибка чтения, введите корректное число.");
             }
         } while (invalid);
         throw new NumberFormatException();

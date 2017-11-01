@@ -3,17 +3,17 @@ package com.vitkulov.console_war.model;
 public interface UnitAction {
 
     /**
-     * Do action
+     * Выполнить действие
      */
     void doAction();
 
     /**
-     * Do primary action
+     * Выполнить первичное действие
      */
     void action1();
 
     /**
-     * Do secondary action
+     * Выполнить вторичное действие
      */
     void action2();
 }

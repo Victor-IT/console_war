@@ -3,12 +3,12 @@ package com.vitkulov.console_war.utils;
 public interface IO {
 
     /**
-     * Read data from input
+     * Читать данные из входящего потока
      */
     String read();
 
     /**
-     * Print value to output
+     * Вывести значение в исходящий поток
      *
      * @param value value to string
      */

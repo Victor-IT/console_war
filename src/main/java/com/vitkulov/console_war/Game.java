@@ -4,6 +4,10 @@ import com.vitkulov.console_war.model.Squad;
 import com.vitkulov.console_war.model.Unit;
 import com.vitkulov.console_war.model.squad_factory.*;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import static com.vitkulov.console_war.RunApp.LOGGER;
 
 /**
@@ -14,7 +18,7 @@ public class Game {
     private Squad darkSquad;
     public static int turn = 1;
 
-    public void createLightSquad() {
+    public void createRandomLightSquad() {
         if ((int) (Math.random() * 2) == 0) {
             this.lightSquad = createSquad(new ElfSquadFactory());
         } else {
@@ -22,7 +26,7 @@ public class Game {
         }
     }
 
-    public void createDarkSquad() {
+    public void createRandomDarkSquad() {
         if ((int) (Math.random() * 2) == 0) {
             this.darkSquad = createSquad(new OrcSquadFactory());
         } else {
@@ -116,6 +120,14 @@ public class Game {
         return lightSquad;
     }
 
+    public void setDarkSquad(Squad darkSquad) {
+        this.darkSquad = darkSquad;
+    }
+
+    public void setLightSquad(Squad lightSquad) {
+        this.lightSquad = lightSquad;
+    }
+
     /**
      * Вывести имя отряда победителя
      *
@@ -127,22 +139,29 @@ public class Game {
         if (gameOver = lightSquad.isDefeated()) {
             LOGGER.info("Отряд {} уничтожен. Победил отряд {}\n", lightSquad.getSquadName(), darkSquad.getSquadName());
             LOGGER.info("В живых осталось: \n");
-            for (Unit unit : darkSquad.getPrivilegedSquad()) {
-                LOGGER.info(unit.toString());
-            }
-            for (Unit unit : darkSquad.getNormalSquad()) {
+
+            List<Unit> result = new ArrayList<>();
+            result.addAll(darkSquad.getPrivilegedSquad());
+            result.addAll(darkSquad.getNormalSquad());
+            result.sort(Comparator.comparing(Unit::getName));
+
+            for (Unit unit : result) {
                 LOGGER.info(unit.toString());
             }
         } else if (gameOver = darkSquad.isDefeated()) {
             LOGGER.info("Отряд {} уничтожен. Победил отряд {}\n", darkSquad.getSquadName(), lightSquad.getSquadName());
             LOGGER.info("В живых осталось: \n");
-            for (Unit unit : lightSquad.getPrivilegedSquad()) {
-                LOGGER.info(unit.toString());
-            }
-            for (Unit unit : lightSquad.getNormalSquad()) {
+
+            List<Unit> result = new ArrayList<>();
+            result.addAll(lightSquad.getPrivilegedSquad());
+            result.addAll(lightSquad.getNormalSquad());
+            result.sort(Comparator.comparing(Unit::getName));
+
+            for (Unit unit : result) {
                 LOGGER.info(unit.toString());
             }
         }
+
         LOGGER.info("Конец игры...\n\n\n");
         return gameOver;
     }
