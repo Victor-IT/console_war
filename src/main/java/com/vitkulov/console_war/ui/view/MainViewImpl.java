@@ -45,7 +45,7 @@ public class MainViewImpl implements MainView {
 
         int answer = 1;
         while (answer != 0) {
-            int choice = validator.getInt("Выберите пункт меню: ");
+            int choice = validator.getIntFromList("Выберите пункт меню: ", this.menuItems.keySet());
             answer = menuItems.get(choice).execute(controller);
         }
 
