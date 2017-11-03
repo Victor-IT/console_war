@@ -81,8 +81,6 @@ public class Squad {
      * @param unit юнит
      */
     public void adToDeadList(Unit unit) {
-        unit.setGame(game);
-        unit.setSquad(this);
         privilegedSquad.remove(unit);
         normalSquad.remove(unit);
 

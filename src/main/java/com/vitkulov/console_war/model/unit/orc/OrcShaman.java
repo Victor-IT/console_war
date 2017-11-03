@@ -22,7 +22,7 @@ public class OrcShaman extends Mage {
         Unit enemy = game.getPrivilegedEnemy(this);
         enemy.addBuff((Skill) getPrimary());
         enemy.checkAndApplyBuff();
-        LOGGER.info("{} {} ({})\n\n", this.getName(), getSecondary().printAction(), enemy.getName());
+        LOGGER.info("{} {} ({})\n\n", this.getName(), getPrimary().printAction(), enemy.getName());
         this.decreaseBuffDurationOrDelete();
         this.getSquad().adToNormal(this);
     }
