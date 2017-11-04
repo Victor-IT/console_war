@@ -36,8 +36,8 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public boolean checkWin() {
-        return game.checkWin();
+    public void printWinner() {
+        game.printWinner();
     }
 
     @Override

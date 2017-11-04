@@ -24,11 +24,9 @@ public interface GameService {
     void createRandomDarkSquad();
 
     /**
-     * Проверить выживших
-     * @return true - если выиграла одна из сторон,
-     * т.е. в отряде одной из сторон не осталось выживших
+     * Вывести результат победы
      */
-    boolean checkWin();
+    void printWinner();
 
     /**
      * Получить темный отряд
@@ -44,11 +42,13 @@ public interface GameService {
 
     /**
      * Создать светлый отряд
+     * @param number номер для выбора из доступных
      */
     void createLightSquad(int number);
 
     /**
      * Создать тёмный отряд
+     * @param number номер для выбора из доступных
      */
     void createDarkSquad(int number);
 

@@ -54,38 +54,44 @@ public class Game {
     /**
      * Получить противника из вражеского отряда
      *
-     * @param unit - текущий юнит
-     * @return enemy unit - противник из вражеского отряда
+     * @param unit текущий юнит
+     * @return enemy unit противник из вражеского отряда
      */
     public Unit getEnemy(Unit unit) {
-        Squad enemySquad;
-        if (unit.getSquad() == lightSquad) {
-            enemySquad = getDarkSquad();
-        } else {
-            enemySquad = getLightSquad();
-        }
+        Squad enemySquad = getEnemySquadOf(unit);
         Unit enemy = enemySquad.getRandomUnit();
         enemy.checkAndApplyBuff();
         return enemy;
     }
 
     public Unit getPrivilegedEnemy(Unit unit) {
-        Squad enemySquad;
-        if (unit.getSquad() == lightSquad) {
-            enemySquad = getDarkSquad();
-        } else {
-            enemySquad = getLightSquad();
-        }
+        Squad enemySquad = getEnemySquadOf(unit);
         Unit enemy = enemySquad.getRandomPrivilegedUnit();
         enemy.checkAndApplyBuff();
         return enemy;
     }
 
     /**
+     * Получить отряд противника
+     *
+     * @param unit текущий юнит
+     * @return squad противника
+     */
+    private Squad getEnemySquadOf(Unit unit) {
+        Squad enemySquad;
+        if (unit.getSquad() == lightSquad) {
+            enemySquad = getDarkSquad();
+        } else {
+            enemySquad = getLightSquad();
+        }
+        return enemySquad;
+    }
+
+    /**
      * Получить союзника из своего отряда
      *
      * @param unit текущий юнит
-     * @return ally unit - союзник из текущего отряда
+     * @return ally unit союзник из текущего отряда
      */
     public Unit getAlly(Unit unit) {
         Squad allySquad;
@@ -102,8 +108,8 @@ public class Game {
     /**
      * Нанести урон противнику
      *
-     * @param enemy  - выбранный противник
-     * @param damage - наносимый урон
+     * @param enemy  выбранный противник
+     * @param damage наносимый урон
      */
     public void hit(Unit enemy, double damage) {
         if (enemy.hit(damage) <= 0) {
@@ -129,14 +135,10 @@ public class Game {
     }
 
     /**
-     * Вывести имя отряда победителя
-     *
-     * @return
+     * Вывести результаты победы
      */
-    public boolean checkWin() {
-        boolean gameOver = false;
-
-        if (gameOver = lightSquad.isDefeated()) {
+    public void printWinner() {
+        if (lightSquad.isDefeated()) {
             LOGGER.info("Отряд {} уничтожен. Победил отряд {}\n", lightSquad.getSquadName(), darkSquad.getSquadName());
             LOGGER.info("В живых осталось: \n");
 
@@ -148,7 +150,7 @@ public class Game {
             for (Unit unit : result) {
                 LOGGER.info(unit.toString());
             }
-        } else if (gameOver = darkSquad.isDefeated()) {
+        } else if (darkSquad.isDefeated()) {
             LOGGER.info("Отряд {} уничтожен. Победил отряд {}\n", darkSquad.getSquadName(), lightSquad.getSquadName());
             LOGGER.info("В живых осталось: \n");
 
@@ -163,7 +165,6 @@ public class Game {
         }
 
         LOGGER.info("Конец игры...\n\n\n");
-        return gameOver;
     }
 
     public void runGame() {
@@ -188,6 +189,6 @@ public class Game {
             }
         } while (!winner);
 
-        checkWin();
+        printWinner();
     }
 }

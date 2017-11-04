@@ -5,6 +5,7 @@ import com.vitkulov.console_war.service.GameServiceImpl;
 import com.vitkulov.console_war.ui.controller.ViewController;
 import com.vitkulov.console_war.ui.controller.ViewControllerImpl;
 import com.vitkulov.console_war.ui.menu.*;
+import com.vitkulov.console_war.ui.view.MainView;
 import com.vitkulov.console_war.ui.view.MainViewImpl;
 import com.vitkulov.console_war.utils.ConsoleIO;
 import com.vitkulov.console_war.utils.Validator;
@@ -19,9 +20,9 @@ import java.util.Scanner;
 public class RunApp {
     public static final Logger LOGGER = LoggerFactory.getLogger("L1");
     public static Validator validator = new Validator(new ConsoleIO(new Scanner(System.in), System.out));
-    private MainViewImpl ui;
+    private MainView ui;
 
-    private RunApp(final MainViewImpl ui) {
+    private RunApp(final MainView ui) {
         this.ui = ui;
     }
 

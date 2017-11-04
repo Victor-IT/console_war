@@ -95,9 +95,11 @@ public class Squad {
         LOGGER.info("Ход {}, отряд {}\n", Game.turn++, squadName);
 
         if (privilegedSquad.size() > 0) {
-            privilegedSquad.get((int) (Math.random() * privilegedSquad.size())).doAction();
+            privilegedSquad.get((int) (Math.random() * privilegedSquad.size()))
+                    .doAction();
         } else if (normalSquad.size() > 0) {
-            normalSquad.get((int) (Math.random() * normalSquad.size())).doAction();
+            normalSquad.get((int) (Math.random() * normalSquad.size()))
+                    .doAction();
         } else {
             LOGGER.info("Отряд {} повержен!\n\n", squadName);
             Game.turn--;
